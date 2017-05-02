@@ -1,0 +1,113 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" 
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:background="@drawable/menu_bg">
+    	 <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp" 
+        android:background="#ff04aeda"> 
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="预定界面"
+            android:textSize="21sp"
+            android:textColor="#ffffffff"/>
+
+    </RelativeLayout>
+	
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+       
+
+    </LinearLayout>
+    
+
+    <TextView
+        android:id="@+id/TextView0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="桌号:"
+        android:textColor="#ffffff" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+ 
+       <Spinner
+            android:id="@+id/tableNoSpinner"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" 
+            >
+        </Spinner>
+        
+        <TextView
+            android:id="@+id/TextView01"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="桌号:"
+            android:textColor="#ffffff" />
+
+        
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/TextView02"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="就餐人数:"
+            android:textColor="#ffffff" >
+        </TextView>
+
+        <EditText
+            android:id="@+id/personNumEditText02"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="" >
+        </EditText>
+
+    </LinearLayout>
+
+<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/TextView03"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="预留电话:"
+            android:textColor="#ffffff" >
+        </TextView>
+
+        <EditText
+            android:id="@+id/telTextview"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="" >
+        </EditText>
+
+
+    </LinearLayout>
+
+        <Button
+        android:id="@+id/reserveBut"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="预定" />
+   
+
+    
+</LinearLayout>

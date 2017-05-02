@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/spinner"
+    android:orientation="horizontal" >
+    
+    
+<TextView
+			    android:id="@+id/TextView0"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:text="菜品编号"/>
+    <TextView
+        android:id="@+id/id_TextView01"
+        android:layout_width="wrap_content"
+        android:layout_height="18dp"
+        android:layout_weight="0.29"
+        android:text="@+id/TextView01" />
+    
+    
+    <TextView
+			    android:id="@+id/TextView1"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:text="单价"/>
+
+    <TextView
+        android:id="@+id/price_TextView02"
+        android:layout_width="wrap_content"
+        android:layout_height="18dp"
+        android:layout_weight="0.25"
+        android:text="@+id/TextView02" />
+
+    <TextView
+        android:id="@+id/name_TextView03"
+        android:layout_width="wrap_content"
+        android:layout_height="18dp"
+        android:layout_weight="0.39"
+        android:text="@+id/TextView03" />
+    
+    
+
+</LinearLayout>

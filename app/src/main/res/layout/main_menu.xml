@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" 
+	android:layout_width="fill_parent"
+	android:layout_height="fill_parent"
+	android:background="@drawable/menu_bg">
+    	 <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp" 
+        android:background="#ff04aeda"> 
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="点餐系统"
+            android:textSize="21sp"
+            android:textColor="#ffffffff"/>
+
+    </RelativeLayout>
+    
+    <TableLayout 
+	android:layout_width="wrap_content" 
+	android:layout_height="wrap_content" 
+	android:stretchColumns="1">
+	
+			<TableRow>
+					<TextView android:text="" />
+					<TextView android:text="" />
+			</TableRow>
+			<TableRow>
+					<TextView android:text="" />
+					<TextView android:text="" />
+			</TableRow>
+			<TableRow>
+					<TextView android:text="" />
+					<TextView android:text="" />
+			</TableRow>
+			<TableRow>
+					<TextView android:text="" />
+					<TextView android:text="" />
+			</TableRow>
+			<TableRow>
+					<TextView android:text="" />
+					<TextView android:text="" />
+			</TableRow>
+			
+			<TableRow>
+					<TextView android:text="" />
+					<TextView android:text="" />
+			</TableRow>
+			
+			<TableRow>
+					<TextView android:text="" />
+					<TextView android:text="" />
+			</TableRow>
+     <com.gc.materialdesign.views.ButtonRectangle
+                android:id="@+id/orderButton"
+                android:layout_width="fill_parent"
+                android:layout_height="60dp"
+                android:background="#1E88E5"
+                android:text="点餐" 
+                android:textSize="10sp"/>
+     <com.gc.materialdesign.views.ButtonRectangle
+                android:id="@+id/checkTableTable"
+                android:layout_width="fill_parent"
+                android:layout_height="60dp"
+                android:background="#1E88E5"
+                android:text="查台" 
+                android:textSize="10sp"/>
+          <com.gc.materialdesign.views.ButtonRectangle
+                android:id="@+id/payButton"
+                android:layout_width="fill_parent"
+                android:layout_height="60dp"
+                android:background="#1E88E5"
+                android:text="结算" 
+                android:textSize="10sp"/>
+     
+     <com.gc.materialdesign.views.ButtonRectangle
+                android:id="@+id/exitButton"
+                android:layout_width="fill_parent"
+                android:layout_height="60dp"
+                android:background="#1E88E5"
+                android:text="预定" 
+                android:textSize="10sp"/>
+     <com.gc.materialdesign.views.ButtonRectangle
+                android:id="@+id/update"
+                android:layout_width="fill_parent"
+                android:layout_height="60dp"
+                android:background="#1E88E5"
+                android:text="更新" 
+                android:textSize="10sp"/>
+
+</TableLayout>
+</LinearLayout>

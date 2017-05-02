@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/mainlayout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/orderbg1"
+    android:orientation="vertical" >
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="1" >
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/TextView01"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="桌号:"
+                android:textColor="#ffffff"
+                />
+
+            <Spinner
+                android:id="@+id/tableNoSpinner"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" 
+                />
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/TextView02"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="人数:"
+                android:textColor="#ffffff"
+                 >
+            </TextView>
+
+            <EditText
+                android:id="@+id/personNumEditText02"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="" 
+               >
+            </EditText>
+        </TableRow>
+
+        <TableRow android:gravity="right" >
+        </TableRow>
+    </TableLayout>
+
+    <Button
+        android:id="@+id/startButton02"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="开桌" 
+        />
+
+    <Button
+        android:id="@+id/addMealButton01"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="添菜" />
+
+    <Button
+        android:id="@+id/orderButton02"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="下单" />
+
+    <ListView
+        android:id="@+id/orderDetailListView01"
+        android:layout_width="wrap_content"
+        android:layout_height="208dp"
+        android:cacheColorHint="#000000"
+        android:textColor="#000000" >
+		
+    </ListView>
+
+
+   
+
+</LinearLayout>

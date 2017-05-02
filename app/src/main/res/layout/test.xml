@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/menu_bg"
+    android:orientation="vertical" >
+        <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp" 
+        android:background="#ff04aeda"> 
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="NFCard"
+            android:textSize="21sp"
+            android:textColor="#ffffffff"/>
+
+    </RelativeLayout>
+    <com.gc.materialdesign.views.ButtonRectangle
+                android:id="@+id/button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#1E88E5"
+                android:text="Button" />
+    <EditText 
+			android:text="" 
+			android:id="@+id/inputDate2"
+			android:layout_width="fill_parent" 
+			android:layout_height="wrap_content"/>
+    <EditText 
+			android:text="" 
+			android:id="@+id/inputDate"
+			android:layout_width="fill_parent" 
+			android:layout_height="wrap_content"/>
+    <ImageView 
+        android:id="@+id/pic_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <Button
+        android:id="@+id/testButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="测试" />
+    <ListView android:id="@+id/list_goods"    
+        android:layout_width="fill_parent"  
+        android:layout_height="wrap_content" />  
+
+</LinearLayout>

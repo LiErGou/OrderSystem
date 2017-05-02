@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, MainActivity!</string>
+    <string name="app_name">无线订餐系统</string>
+    
+     <declare-styleable name="Gallery">
+        <attr name="android:galleryItemBackground">
+        </attr>
+    </declare-styleable>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    
+    <string name="myShop">开桌</string>
+    <string name="updatedishNum">修改菜品数量</string>
+    <string name="updateAddress">修改地址</string>
+    <string name="numberSub">-</string>
+    <string name="numberAdd">+</string>
+    <string name="shopTotalPrice">菜品总价</string>
+    <string name="checkOut">下单</string>
+    <string name="delete">删除</string>
+    <string name="collection">收藏</string>
+    <string name="sure">确定</string>
+    <string name="sureOrder">确认订单</string>
+    <string name="leaveMeassge">备注</string>
+    <color name="black">#000000</color>
+    <string name="sureCheckOut">确定</string>
+    <string name="MyShop">全选</string>
+    <string name="tab_day">Day</string> 
+  <string name="tab_time">Time</string> 
+  <string name="sunday">Sunday</string> 
+  <string name="monday">Monday</string> 
+  <string name="tuesday">Tuesday</string> 
+  <string name="wednesday">Wednesday</string> 
+  <string name="thursday">Thursday</string> 
+  <string name="friday">Friday</string> 
+  <string name="saturday">Saturday</string> 
+ <string-array name="days_array">
+  <item>@string/sunday</item> 
+  <item>@string/monday</item> 
+  <item>@string/tuesday</item> 
+  <item>@string/wednesday</item> 
+  <item>@string/thursday</item> 
+  <item>@string/friday</item> 
+  <item>@string/saturday</item> 
+  </string-array>
+    
+
+</resources>

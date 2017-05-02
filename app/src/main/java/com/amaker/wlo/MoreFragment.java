@@ -30,7 +30,7 @@ public class MoreFragment extends LazyFragment {
         tabIndex = getArguments().getInt(INTENT_INT_INDEX);
         progressBar = (ProgressBar) findViewById(R.id.fragment_mainTab_item_progressBar);
         textView = (TextView) findViewById(R.id.fragment_mainTab_item_textView);
-        textView.setText("界面22" + " " + tabIndex + " 加载完毕");
+        textView.setText("界面" + " " + tabIndex + " 加载完毕");
         handler.sendEmptyMessageDelayed(1, 2000);
     }
 
