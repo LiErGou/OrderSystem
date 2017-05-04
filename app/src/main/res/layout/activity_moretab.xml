@@ -13,14 +13,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textOff="不自动布局"
-            android:textOn="自动布局" />
-        
+            android:textOn="自动布局"
+            android:visibility="gone"/>
+
         <ToggleButton
             android:id="@+id/toggleButton2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textOff="不固定第一个tab"
-            android:textOn="固定第一个tab" />
+            android:textOn="固定第一个tab"
+            android:visibility="gone"/>
     </LinearLayout>
 
     <LinearLayout
@@ -32,27 +34,31 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="on3"
-            android:text="3 个" />
+            android:text="3 个"
+            android:visibility="gone"/>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="on4"
-            android:text="4  个" />
+            android:text="4  个"
+            android:visibility="gone"/>
 
         <Button
             android:id="@+id/button2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="on5"
-            android:text="5  个" />
+            android:text="5  个"
+            android:visibility="gone"/>
 
         <Button
             android:id="@+id/button3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="on12"
-            android:text="12  个" />
+            android:text="12  个"
+            android:visibility="gone"/>
     </LinearLayout>
 
     <com.shizhefei.view.indicator.ScrollIndicatorView

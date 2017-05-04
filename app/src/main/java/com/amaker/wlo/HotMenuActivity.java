@@ -239,27 +239,6 @@ public class HotMenuActivity extends Activity {
 				showDialogDelete(shopIndex);
 				break;
 			case R.id.checkOut: // 下单
-				// 添菜监听器
-				// 下单监听器
-				// 调用点菜方法
-				// addMeal();// 遍历点菜列表
-
-				/*
-				 * for (int i = 0; i < caidan.size(); i++) { // 获得其中点菜map Map
-				 * map = (Map)caidan.get(i); // 获得点菜项 String name = (String)
-				 * map.get("name"); String num = String.valueOf(map.get("num"));
-				 * String price = String.valueOf(map.get("price")); String
-				 * shopid = String.valueOf(map.get("shopid"));
-				 * 
-				 * System.out.println("-------1-------现在输出获取到的节点数据-----------1-----"
-				 * ); System.out.println("菜名:"+name);
-				 * System.out.println("数量:"+num); System.out.println("价格:"+
-				 * price); System.out.println("ID:"+ shopid);
-				 * System.out.println(
-				 * "------1--------输出完毕获取到的节点数据---------1-------");
-				 * 
-				 * }
-				 */
 				if(orderId==null){
 					Toast.makeText(getApplicationContext(), "请在开桌后点餐", Toast.LENGTH_SHORT).show(); 
 				}else{

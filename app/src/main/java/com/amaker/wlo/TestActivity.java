@@ -1,5 +1,6 @@
 package com.amaker.wlo;
 
+import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -28,7 +29,7 @@ import com.shizhefei.view.indicator.transition.OnTransitionTextListener;
 public class TestActivity extends FragmentActivity {
 	private IndicatorViewPager indicatorViewPager;
 	private LayoutInflater inflate;
-	private String[] names = {"CUPCAKE", "DONUT", "FROYO", "GINGERBREAD", "HONEYCOMB", "ICE CREAM SANDWICH", "JELLY BEAN", "KITKAT"};
+	private String[] names = {"热门", "历史点餐", "喜好口味", "喜好食材", "猜你喜欢", "ICE CREAM SANDWICH", "JELLY BEAN", "KITKAT"};
 	private ScrollIndicatorView scrollIndicatorView;
 	private ToggleButton pinnedToggleButton;
 	private ToggleButton splitAutotoggleButton;
@@ -62,7 +63,7 @@ public class TestActivity extends FragmentActivity {
 		viewPager.setOffscreenPageLimit(2);
 		indicatorViewPager = new IndicatorViewPager(scrollIndicatorView, viewPager);
 		inflate = LayoutInflater.from(getApplicationContext());
-		indicatorViewPager.setAdapter(new MyAdapter(getSupportFragmentManager()));
+		indicatorViewPager.setAdapter(new MyAdapter(getSupportFragmentManager(),this));
 
 		// 默认true ，自动布局
 		splitAutotoggleButton.setChecked(scrollIndicatorView.isSplitAuto());
@@ -87,7 +88,7 @@ public class TestActivity extends FragmentActivity {
 		}
 	};
 
-	private int size = 3;
+	private int size = 5;
 
 	public void on3(View view) {
 		size = 3;
@@ -110,9 +111,10 @@ public class TestActivity extends FragmentActivity {
 	}
 
 	private class MyAdapter extends IndicatorFragmentPagerAdapter {
-
-		public MyAdapter(FragmentManager fragmentManager) {
+		private Activity activity =null;
+		public MyAdapter(FragmentManager fragmentManager,Activity activity) {
 			super(fragmentManager);
+			this.activity=activity;
 		}
 
 		@Override
@@ -136,7 +138,7 @@ public class TestActivity extends FragmentActivity {
 		public Fragment getFragmentForPage(int position) {
 			MoreFragment fragment = new MoreFragment();
 			Bundle bundle = new Bundle();
-			bundle.putInt(MoreFragment.INTENT_INT_INDEX, position);
+			//bundle.putInt(MoreFragment.INTENT_INT_INDEX, position);
 			fragment.setArguments(bundle);
 			return fragment;
 		}
