@@ -138,7 +138,7 @@ public class TestActivity extends FragmentActivity {
 		public Fragment getFragmentForPage(int position) {
 			MoreFragment fragment = new MoreFragment();
 			Bundle bundle = new Bundle();
-			//bundle.putInt(MoreFragment.INTENT_INT_INDEX, position);
+			bundle.putInt(MoreFragment.INTENT_INT_INDEX, position);
 			fragment.setArguments(bundle);
 			return fragment;
 		}

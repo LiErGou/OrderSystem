@@ -81,6 +81,8 @@ public class MoreFragment extends Fragment {
     private List caidan = new ArrayList();
     private Cursor c = null;
     private View view=null;
+    private int tabIndex=0;
+    public static final String INTENT_INT_INDEX = "intent_int_index";
     // 点菜列表中具体的数据项
 
     private int[] to = new int[5];
@@ -90,9 +92,10 @@ public class MoreFragment extends Fragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragmentmenu, container, false);
         list = (ListView) view.findViewById(R.id.list);
-        Log.d("MoreF","lioliolistview is："+ list);
+        tabIndex = getArguments().getInt(INTENT_INT_INDEX);
+        Log.d("MoreF", "tabIndex is："+ tabIndex);
         Log.d("MoreF", "view is：" + view);
-        sendRequestWithOkHttp();
+        sendRequestWithOkHttp(tabIndex);
         initViews();
         while(true){
             if(dish!=null){
@@ -176,7 +179,8 @@ public class MoreFragment extends Fragment {
         Log.d("MoreF", "liolioadapter 执行完毕");
     }
 
-    private void sendRequestWithOkHttp(){
+    private void sendRequestWithOkHttp(final int tabIndex){
+
         new Thread(new Runnable(){
 
             @Override
@@ -184,7 +188,7 @@ public class MoreFragment extends Fragment {
                 try{
                     OkHttpClient client =new OkHttpClient();
                     Request request=new Request.Builder()
-                            .url(HttpUtil.BASE_URL+"servlet/GetMenusServlet").build();
+                            .url(HttpUtil.BASE_URL+"servlet/GetMenusServlet?"+"tabIndex="+tabIndex).build();
                     Response reponse=client.newCall(request).execute();
                     String reponseData=reponse.body().string();
                     Log.d("TestActivity","user"+reponseData);
