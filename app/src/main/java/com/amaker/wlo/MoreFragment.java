@@ -5,12 +5,12 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.ListFragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -58,7 +58,7 @@ public class MoreFragment extends Fragment {
     private Button startBtn;
     private String orderId=null;
     private String ShopId;
-    private String userId;
+    private String userId="1";
     private String isGuest;// 判断身份
     private CheckBox checkBox;
     private ListView list;
@@ -91,10 +91,9 @@ public class MoreFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragmentmenu, container, false);
-        list = (ListView) view.findViewById(R.id.list);
+//        list = (ListView) view.findViewById(R.id.list);
         tabIndex = getArguments().getInt(INTENT_INT_INDEX);
-        Log.d("MoreF", "tabIndex is："+ tabIndex);
-        Log.d("MoreF", "view is：" + view);
+      //  userId=getUserId();
         sendRequestWithOkHttp(tabIndex);
         initViews();
         while(true){
@@ -103,27 +102,27 @@ public class MoreFragment extends Fragment {
                 break;
             }
         }
-        Log.d("MoreF","liolioadapter 执行setListAdapter");
-//        setListAdapter(adapter);
-        Log.d("MoreF", "liolioadapter setListAdapter执行完毕");
         return view;
     }
-
+    @Override
+    public void onResume(){
+        super.onResume();
+        adapter.setListNum(dish.size());
+    }
+    @Override
+    public void onStart(){
+        super.onStart();
+    }
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        adapter = new SimpleAdapter(getActivity(), getData(listItem, iconItem),
-//                R.layout.me_function_item, new String[] { "name", "icon" },
-//                new int[] { R.id.functionName, R.id.functionIcon });
-
-
     }
 
-
-//    public void onListItemClick(ListView l, View v, int position, long id) {
-//        super.onListItemClick(l, v, position, id);
-//
-//    }
+    private String getUserId(){
+        SharedPreferences pref = getActivity().getSharedPreferences("data",Context.MODE_PRIVATE);
+        String  userId=pref.getString("userId", "");
+        return userId;
+    }
 
     private List<? extends Map<String, ?>> getData(String[] strs, int[] icon) {
         List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
@@ -141,7 +140,6 @@ public class MoreFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-
     }
 
     @Override
@@ -158,7 +156,6 @@ public class MoreFragment extends Fragment {
         popRecycle = (TextView) view.findViewById(R.id.collection);
         popCheckOut = (TextView) view.findViewById(R.id.checkOut);
         layout = (LinearLayout) view.findViewById(R.id.price_relative);
-        Log.d("MoreF","initView执行 liolio");
         ClickListener cl = new ClickListener();
         checkBox.setOnClickListener(cl);
         popDelete.setOnClickListener(cl);
@@ -172,11 +169,8 @@ public class MoreFragment extends Fragment {
         getListData(dish);
         shopBeanList = ShoppingCanst.list;
         adapter = new MoreAdapter(getContext(), shopBeanList, handler, R.layout.main_item);
-        Log.d("MoreF","init执行 liolio");
-        Log.d("MoreF","liolio2 listview is："+ list);
-        Log.d("MoreF","liolioadapter is："+adapter);
+        Log.i("..", "MoreAdapter()新建对象：lioliolio" +adapter);
         list.setAdapter(adapter);
-        Log.d("MoreF", "liolioadapter 执行完毕");
     }
 
     private void sendRequestWithOkHttp(final int tabIndex){
@@ -188,7 +182,7 @@ public class MoreFragment extends Fragment {
                 try{
                     OkHttpClient client =new OkHttpClient();
                     Request request=new Request.Builder()
-                            .url(HttpUtil.BASE_URL+"servlet/GetMenusServlet?"+"tabIndex="+tabIndex).build();
+                            .url(HttpUtil.BASE_URL+"servlet/GetMenusServlet?"+"tabIndex="+tabIndex+"&userId="+userId).build();
                     Response reponse=client.newCall(request).execute();
                     String reponseData=reponse.body().string();
                     Log.d("TestActivity","user"+reponseData);
@@ -304,10 +298,6 @@ public class MoreFragment extends Fragment {
                             Toast.makeText(getContext(), "下单成功！",
                                     Toast.LENGTH_LONG).show();
                         } else if (v.getId() == R.id.title_left) { // 宸︽爣棰樿繑鍥�
-//						Intent intent =new Intent();
-//						intent.putExtra("data_retuen", orderId);
-//						setResult(RESULT_OK,intent);
-//						finish();
 
                             break;
 
@@ -341,10 +331,6 @@ public class MoreFragment extends Fragment {
 
     // 结算
 
-    //	Intent intent =new Intent();
-//	intent.putExtra("data_retuen", orderId);
-//	setResult(RESULT_OK,intent);
-//	finish();
     private void goCheckOut() {
         String shopIndex = deleteOrCheckOutShop();
 //		Intent checkOutIntent = new Intent(HotMenuActivity.this,
@@ -418,11 +404,6 @@ public class MoreFragment extends Fragment {
                 flag = !(Boolean) msg.obj;
                 checkBox.setChecked((Boolean) msg.obj);
             } else if (msg.what == 12) {
-                // 所有列表中的商品全部被选中，让全选按钮也被选中
-                // flag记录是否全被选中
-                // List caidan=List(msg.obj);
-                // System.out.println(caidan);
-                // 这里是获取了数据了么？
                 caidan = new ArrayList();
                 caidan = (List) msg.obj;
                 for (int i = 0; i < caidan.size(); i++) {
@@ -462,6 +443,12 @@ class MoreAdapter extends BaseAdapter {
     private LayoutInflater inflater; // 布局填充器
     private static HashMap<Integer, Boolean> isSelected;
 
+    public void setListNum(int listNum) {
+        this.listNum = listNum;
+    }
+
+    private int listNum;
+
     @SuppressLint("UseSparseArrays")
     public MoreAdapter(Context context, List<shopBean> list, Handler mHandler,
                        int resourceId) {
@@ -471,14 +458,16 @@ class MoreAdapter extends BaseAdapter {
         this.resourceId = resourceId;
         inflater = LayoutInflater.from(context);
         isSelected = new HashMap<Integer, Boolean>();
+        listNum=list.size();
         initDate();
     }
 
     // 初始化isSelected的数据
     private void initDate() {
-        for (int i = 0; i < list.size(); i++) {
+        for (int i = 0; i <listNum; i++) {
             getIsSelected().put(i, false);
         }
+        Log.d("li", list.toString() + "lioliolio");
     }
 
     public static HashMap<Integer, Boolean> getIsSelected() {
@@ -540,6 +529,10 @@ class MoreAdapter extends BaseAdapter {
         holder.shop_number.setText(String.valueOf(bean.getShopNumber()));
         holder.shop_number.setOnClickListener(new ShopNumberClickListener());
         holder.shop_check.setTag(position);
+        Log.d("li", getIsSelected() + "lioliolio");
+        Log.d("li", position + "lioliolio");
+        Log.d("li", getIsSelected().get(position) + "lioliolio");
+
         holder.shop_check.setChecked(getIsSelected().get(position));
         holder.shop_check
                 .setOnCheckedChangeListener(new CheckBoxChangedListener());

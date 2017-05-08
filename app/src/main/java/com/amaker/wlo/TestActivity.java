@@ -8,6 +8,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,7 +30,7 @@ import com.shizhefei.view.indicator.transition.OnTransitionTextListener;
 public class TestActivity extends FragmentActivity {
 	private IndicatorViewPager indicatorViewPager;
 	private LayoutInflater inflate;
-	private String[] names = {"热门", "历史点餐", "喜好口味", "喜好食材", "猜你喜欢", "ICE CREAM SANDWICH", "JELLY BEAN", "KITKAT"};
+	private String[] names = {"热门", "猜你喜欢", "喜好口味", "喜好食材", "历史点餐", "ICE CREAM SANDWICH", "JELLY BEAN", "KITKAT"};
 	private ScrollIndicatorView scrollIndicatorView;
 	private ToggleButton pinnedToggleButton;
 	private ToggleButton splitAutotoggleButton;
@@ -137,6 +138,7 @@ public class TestActivity extends FragmentActivity {
 		@Override
 		public Fragment getFragmentForPage(int position) {
 			MoreFragment fragment = new MoreFragment();
+			Log.i("..", "MoreFragment()新建对象：lioliolio" +fragment);
 			Bundle bundle = new Bundle();
 			bundle.putInt(MoreFragment.INTENT_INT_INDEX, position);
 			fragment.setArguments(bundle);
