@@ -13,7 +13,7 @@ import android.util.Log;
 
 public class HttpUtil {
 	// ��URL
-	public static final String BASE_URL="http://10.202.18.52:8080/WirelessOrder_Server/";
+	public static final String BASE_URL="http://10.202.18.39:8080/WirelessOrder_Server/";
 	// ���Get�������request
 	public static HttpGet getHttpGet(String url){
 		HttpGet request = new HttpGet(url);

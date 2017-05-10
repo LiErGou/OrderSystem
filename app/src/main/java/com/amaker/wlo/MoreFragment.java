@@ -458,7 +458,7 @@ class MoreAdapter extends BaseAdapter {
         this.resourceId = resourceId;
         inflater = LayoutInflater.from(context);
         isSelected = new HashMap<Integer, Boolean>();
-        listNum=list.size();
+        listNum=30;
         initDate();
     }
 
@@ -678,35 +678,8 @@ class MoreAdapter extends BaseAdapter {
                 map.put("price", bean.getShopPrice());
                 map.put("shopid", bean.getShopId());
                 data1.add(map);
-
-                // 封装到Map中
-                // data1 = new ArrayList();// 购物车数据集合
-				/*
-				 * HashMap map = new HashMap(); //进行字符串分割 String[] nameght
-				 * =nameStr.split("-");//转换 数组 String[] priceght
-				 * =priceStr.split("-");//转换 数组 String[] numght
-				 * =numStr.split("-");//转换 数组 for(int j=0;j<nameght.length;j++)
-				 * { map.put("name", nameght[j]); map.put("num", numght[j]);
-				 * map.put("price", priceght[j]);
-				 * System.out.println("--------------现在输出获取到的节点数据----------------"
-				 * ); System.out.println("菜名"+nameght[j]);
-				 * System.out.println("数量"+numght[j]);
-				 * System.out.println("价格"+priceght[j]);
-				 * System.out.println("--------------输出完毕获取到的节点数据----------------"
-				 * ); } // 添加到ListView data1.add(map);
-				 */
             }
         }
-		/*
-		 * for (int i = 0; i < data1.size(); i++) { // 获得其中点菜map Map map =
-		 * (Map)data1.get(i); // 获得点菜项 String name = (String) map.get("name");
-		 * String num = (String)map.get("num"); String price =
-		 * (String)map.get("price");
-		 * System.out.println("--------------现在输出获取到的节点数据----------------");
-		 * System.out.println("菜名"+name); System.out.println("数量"+num);
-		 * System.out.println("价格"+price);
-		 * System.out.println("--------------输出完毕获取到的节点数据----------------"); }
-		 */
         return data1;
     }
 

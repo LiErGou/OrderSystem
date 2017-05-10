@@ -97,6 +97,7 @@ public class LoginActivity extends Activity {
 					if(flag){
 						Intent intent = new Intent(LoginActivity.this,MainMenuActivity.class);
 						startActivity(intent);
+						getResult=false;
 					}else{
 						showDialog("用户名称或者密码错误，请重新输入！");
 					}

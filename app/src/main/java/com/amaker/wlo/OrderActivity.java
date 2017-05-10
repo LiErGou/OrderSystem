@@ -82,11 +82,13 @@ public class OrderActivity extends Activity {
 	private List<shopBean> list;
 	private List data = new ArrayList();// 购物车数据集合
 	private List<AddressBean> addressList;
-	private boolean flag = true;
+	private boolean flag = false;
 	private SimpleAdapter sa;
 	private Map map;
 	private List caidan = new ArrayList();
 	private Cursor c = null;
+	String result;
+
 	// 点菜列表中具体的数据项
 
 	private int[] to = new int[5];
@@ -203,6 +205,7 @@ public class OrderActivity extends Activity {
 	private OnClickListener startListener = new OnClickListener() {
 
 		public void onClick(View v) {
+
 			String personNum = personNumEt.getText().toString();
 			if(personNum.equals("")){
 				Toast.makeText(getApplicationContext(), "请输入就餐人数", Toast.LENGTH_SHORT).show(); 
@@ -284,17 +287,31 @@ public class OrderActivity extends Activity {
 			// 设置查询参数
 			request.setEntity(entity1);
 			// 获得响应结果
-			String result = HttpUtil.queryStringForPost(request);
+			getResult(request);
 			// 将开桌生成的订单Id，赋值给全局orderId
-			orderId = result;
-	        SharedPreferences.Editor editor =getSharedPreferences("data",MODE_PRIVATE).edit();
-	        editor.putString("orderId",orderId);
-	        editor.apply();
+			while(true){
+				if(flag)
+					break;
+			}
+			flag=false;
 			Toast.makeText(OrderActivity.this, "订单号：" + result,
 					Toast.LENGTH_LONG).show();
 		}
 	};
 
+	private void getResult(final HttpPost request){
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				result = HttpUtil.queryStringForPost(request);
+				orderId = result;
+				SharedPreferences.Editor editor =getSharedPreferences("data",MODE_PRIVATE).edit();
+				editor.putString("orderId", orderId);
+				editor.apply();
+			flag=true;
+			}
+		}).start();
+	}
 	// 初始化UI界面
 	private void initViews() {
 		checkBox = (CheckBox) findViewById(R.id.all_check);

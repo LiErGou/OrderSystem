@@ -33,68 +33,69 @@ import com.amaker.util.HttpUtil;
 import com.amaker.provider.*;
 import android.content.ContentProvider;
 /**
- * 
- * @author ¹ùºêÖ¾
- * ÊµÏÖÊı¾İÍ¬²½¹¦ÄÜ
+ *
+ * @author éƒ­å®å¿—
+ * å®ç°æ•°æ®åŒæ­¥åŠŸèƒ½
  */
 
-//ÔÚ¡°com.amaker.wlo"ÖĞ´´½¨Ò»¸öÃû³ÆÎª¡°UpdateActivity¡±µÄActivity£¬ÔÚ¸ÃÀàÖĞ¼Ì³ĞListActivity£¬½çÃæÍ¨¹ıListViewÀ´Õ¹Ê¾¡£
-	//ÔÚonCreate£¨£©·½·¨ÖĞ»ñµÃListViewÊµÀı£¬²¢ÎªListView°ó¶¨Êı¾İ¡£
+//åœ¨â€œcom.amaker.wlo"ä¸­åˆ›å»ºä¸€ä¸ªåç§°ä¸ºâ€œUpdateActivityâ€çš„Activityï¼Œåœ¨è¯¥ç±»ä¸­ç»§æ‰¿ListActivityï¼Œç•Œé¢é€šè¿‡ListViewæ¥å±•ç¤ºã€‚
+//åœ¨onCreateï¼ˆï¼‰æ–¹æ³•ä¸­è·å¾—ListViewå®ä¾‹ï¼Œå¹¶ä¸ºListViewç»‘å®šæ•°æ®ã€‚
 public class UpdateActivity extends ListActivity {
+	private boolean getResult=false;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		// ÉèÖÃ±êÌâ
-		setTitle("°²×¿µã²ÍÏµÍ³¸üĞÂ½çÃæ");
-		// »ñµÃListViewÊµÀı
+		// è®¾ç½®æ ‡é¢˜
+		setTitle("å®‰å“ç‚¹é¤ç³»ç»Ÿæ›´æ–°ç•Œé¢");
+		// è·å¾—ListViewå®ä¾‹
 		ListView listView = getListView();
-		// ÉùÃ÷ListViewÒª°ó¶¨µÄÊı¾İ
-		String[] items = {"¸üĞÂ²ËÆ×±íÊı¾İ[MenuTbl]", "¸üĞÂ²Í×À±íÊı¾İ[TableTbl]" };
-		// ÊµÀı»¯adapter
+		// å£°æ˜ListViewè¦ç»‘å®šçš„æ•°æ®
+		String[] items = {"æ›´æ–°èœè°±è¡¨æ•°æ®[MenuTbl]", "æ›´æ–°é¤æ¡Œè¡¨æ•°æ®[TableTbl]" };
+		// å®ä¾‹åŒ–adapter
 		ListAdapter adapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1, items);
-		// ÎªListViewÉèÖÃadapter
+		// ä¸ºListViewè®¾ç½®adapter
 		listView.setAdapter(adapter);
 	}
 
-	
-	
-	//¸²¸ÇListActivityµÄonListItemClick£¨£©·½·¨£¬ÏìÓ¦ListViewÁĞ±íÖĞµÄµ¥»÷ÊÂ¼ş
+
+
+	//è¦†ç›–ListActivityçš„onListItemClickï¼ˆï¼‰æ–¹æ³•ï¼Œå“åº”ListViewåˆ—è¡¨ä¸­çš„å•å‡»äº‹ä»¶
 	@Override
 	protected void onListItemClick(ListView l, View v, int position, long id) {
 		super.onListItemClick(l, v, position, id);
 		switch (position) {
-		// ¸üĞÂ²ËÆ×±íÊı¾İ
-		case 0:
-			confirm(1);
-			break;
-		// ¸üĞÂ×ÀÎ»±íÊı¾İ
-		case 1:
-			confirm(2);
-			break;
-		default:
-			break;
+			// æ›´æ–°èœè°±è¡¨æ•°æ®
+			case 0:
+				confirm(1);
+				break;
+			// æ›´æ–°æ¡Œä½è¡¨æ•°æ®
+			case 1:
+				confirm(2);
+				break;
+			default:
+				break;
 		}
 	}
-	
-	
-	
-	// È·ÈÏ¶Ô»°¿ò
-	//¶¨ÒåÒ»¸öconfirm£¨£©·½·¨£¬ÌáÊ¾ÓÃ»§È·ÈÏÊÇ·ñÕæµÄĞèÒªÍ¬²½Êı¾İ£¬·ÀÖ¹ÓÃ»§Îó²Ù×÷
+
+
+
+	// ç¡®è®¤å¯¹è¯æ¡†
+	//å®šä¹‰ä¸€ä¸ªconfirmï¼ˆï¼‰æ–¹æ³•ï¼Œæç¤ºç”¨æˆ·ç¡®è®¤æ˜¯å¦çœŸçš„éœ€è¦åŒæ­¥æ•°æ®ï¼Œé˜²æ­¢ç”¨æˆ·è¯¯æ“ä½œ
 	private void confirm(final int item) {
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setMessage("ÄãÕæµÄÒª¸üĞÂÂğ?").setCancelable(false).setPositiveButton(
-				"È·¶¨", new DialogInterface.OnClickListener() {
+		builder.setMessage("ä½ çœŸçš„è¦æ›´æ–°å—?").setCancelable(false).setPositiveButton(
+				"ç¡®å®š", new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int id) {
 						if (item == 1) {
-							// ¸üĞÂ²ËÆ×±íÊı¾İ
-							updateMenu();
+							// æ›´æ–°èœè°±è¡¨æ•°æ®
+							updateMenuThread();
 						} else {
-							// ¸üĞÂ×ÀÎ»±íÊı¾İ
-							updateTable();
+							// æ›´æ–°æ¡Œä½è¡¨æ•°æ®
+							updateTableThread();
 						}
 					}
-				}).setNegativeButton("È¡Ïû",
+				}).setNegativeButton("å–æ¶ˆ",
 				new DialogInterface.OnClickListener() {
 					public void onClick(DialogInterface dialog, int id) {
 						dialog.cancel();
@@ -103,79 +104,79 @@ public class UpdateActivity extends ListActivity {
 		AlertDialog alert = builder.create();
 		alert.show();
 	}
-	
-	
-	
-	
-	
-	//ÔÚ¸ÃÀàÖĞ¶¨ÒåÒ»¸ö¸üĞÂ²ËÆ×±íµÄ·½·¨updateMenu£¨£©£¬¸Ã·½·¨µ÷ÓÃ·şÎñÆ÷Servlet»ñµÃXML¸ñÊ½µÄÊäÈëÁ÷£¬
-	//Í¨¹ıJava DOM½âÎö¸ÃXML»ñµÃ²ËÆ×±íÊı¾İ,½«Êı¾İ±£´æµ½±¾µØSQLiteÊı¾İ¿âÖĞ
-	// ¸üĞÂ²ËÆ×±í
+
+
+
+
+
+	//åœ¨è¯¥ç±»ä¸­å®šä¹‰ä¸€ä¸ªæ›´æ–°èœè°±è¡¨çš„æ–¹æ³•updateMenuï¼ˆï¼‰ï¼Œè¯¥æ–¹æ³•è°ƒç”¨æœåŠ¡å™¨Servletè·å¾—XMLæ ¼å¼çš„è¾“å…¥æµï¼Œ
+	//é€šè¿‡Java DOMè§£æè¯¥XMLè·å¾—èœè°±è¡¨æ•°æ®,å°†æ•°æ®ä¿å­˜åˆ°æœ¬åœ°SQLiteæ•°æ®åº“ä¸­
+	// æ›´æ–°èœè°±è¡¨
 	private void updateMenu() {
-		// ·ÃÎÊ·şÎñÆ÷url
-			String urlStr = HttpUtil.BASE_URL + "servlet/UpdateServlet";
+		// è®¿é—®æœåŠ¡å™¨url
+		String urlStr = HttpUtil.BASE_URL + "servlet/UpdateServlet";
 		try {
-			// ÊµÀı»¯URL¶ÔÏó
+			// å®ä¾‹åŒ–URLå¯¹è±¡
 			URL url = new URL(urlStr);
-			// ´ò¿ªÁ¬½Ó
-			//HttpURLConnection conn = (HttpURLConnection)url.openConnection();//´Ë´¦ÓĞ¸Ä¶¯
+			// æ‰“å¼€è¿æ¥
+			//HttpURLConnection conn = (HttpURLConnection)url.openConnection();//æ­¤å¤„æœ‰æ”¹åŠ¨
 			URLConnection conn=url.openConnection();
-			// »ñµÃÊäÈëÁ÷
-		//	conn.setRequestMethod("GET");
-		//	conn.setReadTimeout(5*1000);  
-		//	if(conn.getResponseCode()== 200){
+			// è·å¾—è¾“å…¥æµ
+			//	conn.setRequestMethod("GET");
+			//	conn.setReadTimeout(5*1000);
+			//	if(conn.getResponseCode()== 200){
 			InputStream in = conn.getInputStream();
-			// ÊµÀı»¯DocumentBuilderFactory
+			// å®ä¾‹åŒ–DocumentBuilderFactory
 			DocumentBuilderFactory factory = DocumentBuilderFactory
 					.newInstance();
-			// ÊµÀı»¯DocumentBuilder
+			// å®ä¾‹åŒ–DocumentBuilder
 			DocumentBuilder builder = factory.newDocumentBuilder();
-			// »ñµÃDocument
+			// è·å¾—Document
 			Document doc = builder.parse(in);
-			// »ñµÃ½ÚµãÁĞ±í
+			// è·å¾—èŠ‚ç‚¹åˆ—è¡¨
 			NodeList nl = doc.getElementsByTagName("menu");
-			// »ñµÃ·ÃÎÊÊı¾İ½Ó¿ÚContentResolver
+			// è·å¾—è®¿é—®æ•°æ®æ¥å£ContentResolver
 			ContentResolver cr = getContentResolver();
-			// ·ÃÎÊÊı¾İµÄUri
+			// è®¿é—®æ•°æ®çš„Uri
 			Uri uri1 = Menus.CONTENT_URI;
-			// É¾³ı±¾µØSQLiteÊı¾İ¿âÖĞ²ËÆ×±íÖĞµÄÊı¾İ
+			// åˆ é™¤æœ¬åœ°SQLiteæ•°æ®åº“ä¸­èœè°±è¡¨ä¸­çš„æ•°æ®
 			cr.delete(uri1, null, null);
 
-			// Ñ­»·½«Êı¾İ±£´æµ½²ËÆ×±í
+			// å¾ªç¯å°†æ•°æ®ä¿å­˜åˆ°èœè°±è¡¨
 			for (int i = 0; i < nl.getLength(); i++) {
-				// ÊµÀı»¯ContentValues
+				// å®ä¾‹åŒ–ContentValues
 				ContentValues values = new ContentValues();
-				// ½âÎöXMLÎÄ¼ş»ñµÃ²Ëµ¥id
+				// è§£æXMLæ–‡ä»¶è·å¾—èœå•id
 				int id = Integer.parseInt(doc.getElementsByTagName("id")
 						.item(i).getFirstChild().getNodeValue());
-				// Ãû³Æ
+				// åç§°
 				String name = doc.getElementsByTagName("name").item(i)
 						.getFirstChild().getNodeValue();
-				// Í¼Æ¬Â·¾¶
+				// å›¾ç‰‡è·¯å¾„
 				String pic = doc.getElementsByTagName("pic").item(i)
 						.getFirstChild().getNodeValue();
-				// ¼Û¸ñ
+				// ä»·æ ¼
 				int price = Integer.parseInt(doc.getElementsByTagName("price")
 						.item(i).getFirstChild().getNodeValue());
-				// ·ÖÀà±àºÅ
+				// åˆ†ç±»ç¼–å·
 				int typeId = Integer.parseInt(doc
 						.getElementsByTagName("typeId").item(i).getFirstChild()
 						.getNodeValue());
-				// ±¸×¢
+				// å¤‡æ³¨
 				String remark = doc.getElementsByTagName("remark").item(i)
 						.getFirstChild().getNodeValue();
-				
-				// Ìí¼Óµ½ContenValues¶ÔÏó
+
+				// æ·»åŠ åˆ°ContenValueså¯¹è±¡
 				values.put("_id", id);
 				values.put("name", name);
 				values.put("price", price);
 				values.put("pic", pic);
 				values.put("typeId", typeId);
 				values.put("remark", remark);
-		
-				// ²åÈëµ½Êı¾İ¿â
+
+				// æ’å…¥åˆ°æ•°æ®åº“
 				cr.insert(uri1, values);
-				
+
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -192,70 +193,89 @@ public class UpdateActivity extends ListActivity {
 		cr.insert(uri1, values);*/
 	}
 
-	// ¸üĞÂ×ÀºÅ±í
+	private void updateTableThread(){
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				updateTable();
+				getResult=true;
+			}
+		}).start();
+	}
+	private void updateMenuThread(){
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				updateMenu();
+				getResult=true;
+			}
+		}).start();
+	}
+	// æ›´æ–°æ¡Œå·è¡¨
 	private void updateTable() {
-		// ·ÃÎÊ·şÎñÆ÷url
+		// è®¿é—®æœåŠ¡å™¨url
 		String urlStr = HttpUtil.BASE_URL + "servlet/UpdateTableServlet";
 		//SQLiteDatabase db = new DBHelper(getBaseContext()).getWritableDatabase();
 		try {
-			// ÊµÀı»¯URL¶ÔÏó
+			// å®ä¾‹åŒ–URLå¯¹è±¡
 			URL url = new URL(urlStr);
-			// ´ò¿ªÁ¬½Ó
+			Log.d("UpdateActivity", urlStr);
+			// æ‰“å¼€è¿æ¥
 			URLConnection conn = url.openConnection();
-			// »ñµÃÊäÈëÁ÷
+			// è·å¾—è¾“å…¥æµ
 			InputStream in = conn.getInputStream();
-			// ÊµÀı»¯DocumentBuilderFactory
+			// å®ä¾‹åŒ–DocumentBuilderFactory
 			DocumentBuilderFactory factory = DocumentBuilderFactory
 					.newInstance();
-			// ÊµÀı»¯DocumentBuilder
+			// å®ä¾‹åŒ–DocumentBuilder
 			DocumentBuilder builder = factory.newDocumentBuilder();
-			// »ñµÃDocument
+			// è·å¾—Document
 			Document doc = builder.parse(in);
-			// »ñµÃ½ÚµãÁĞ±í
+			// è·å¾—èŠ‚ç‚¹åˆ—è¡¨
 			NodeList nl = doc.getElementsByTagName("Table");
-			// »ñµÃ·ÃÎÊÊı¾İ½Ó¿ÚContentResolver
+			// è·å¾—è®¿é—®æ•°æ®æ¥å£ContentResolver
 			ContentResolver cr = getContentResolver();
-			// ·ÃÎÊÊı¾İµÄUri
+			// è®¿é—®æ•°æ®çš„Uri
 			Uri uri1= Tables.CONTENT_URI;
-			// É¾³ı±¾µØSQLiteÊı¾İ¿âÖĞ²ËÆ×±íÖĞµÄÊı¾İ
+			// åˆ é™¤æœ¬åœ°SQLiteæ•°æ®åº“ä¸­èœè°±è¡¨ä¸­çš„æ•°æ®
 			cr.delete(uri1, null, null);
 
-			// Ñ­»·½«Êı¾İ±£´æµ½²ËÆ×±í
+			// å¾ªç¯å°†æ•°æ®ä¿å­˜åˆ°èœè°±è¡¨
 			for (int i = 0; i < nl.getLength(); i++) {
-				// ÊµÀı»¯ContentValues
+				// å®ä¾‹åŒ–ContentValues
 				ContentValues values = new ContentValues();
-				// ½âÎöXMLÎÄ¼ş»ñµÃ²Ëµ¥id
+				// è§£æXMLæ–‡ä»¶è·å¾—èœå•id
 				int id = Integer.parseInt(doc.getElementsByTagName("id")
 						.item(i).getFirstChild().getNodeValue());
-				// ×ÀºÅ
+				// æ¡Œå·
 				int num = Integer.parseInt(doc.getElementsByTagName("num")
 						.item(i).getFirstChild().getNodeValue());
-				// ²Í×À×´Ì¬
-			//	int flag = Integer.parseInt(doc
-			//			.getElementsByTagName("flag").item(i).getFirstChild()
-			//			.getNodeValue());
-				// ÃèÊö
+				// é¤æ¡ŒçŠ¶æ€
+				//	int flag = Integer.parseInt(doc
+				//			.getElementsByTagName("flag").item(i).getFirstChild()
+				//			.getNodeValue());
+				// æè¿°
 				String description = doc.getElementsByTagName("description").item(i)
 						.getFirstChild().getNodeValue();
-				//Ã¿×ÀÈËÊı
+				//æ¯æ¡Œäººæ•°
 				int seatNum = Integer.parseInt(doc.getElementsByTagName("seatNum")
 						.item(i).getFirstChild().getNodeValue());
-				
-				//Log.d("UpdateActivity",id+"ºÅ×ÀcookseatNum="+seatNum);
-				// Ìí¼Óµ½ContenValues¶ÔÏó
+
+				//Log.d("UpdateActivity",id+"å·æ¡ŒcookseatNum="+seatNum);
+				// æ·»åŠ åˆ°ContenValueså¯¹è±¡
 				values.put("_id", id);
 				values.put("num", num);
-			//	values.put("flag", flag);
+				//	values.put("flag", flag);
 				values.put("description", description);
 				values.put("seatNum", seatNum);
-				// ²åÈëµ½Êı¾İ¿â
+				// æ’å…¥åˆ°æ•°æ®åº“
 				cr.insert(uri1, values);
 			}
 			/*ContentValues values = new ContentValues();
 			values.put("_id", 2);
 			values.put("num",4);
 		//	values.put("flag", 1);
-			values.put("description", "ÓĞÈË");
+			values.put("description", "æœ‰äºº");
 			cr.insert(uri1, values);*/
 		} catch (Exception e) {
 			e.printStackTrace();
