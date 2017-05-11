@@ -93,9 +93,11 @@ public class MoreFragment extends Fragment {
         view = inflater.inflate(R.layout.fragmentmenu, container, false);
 //        list = (ListView) view.findViewById(R.id.list);
         tabIndex = getArguments().getInt(INTENT_INT_INDEX);
-      //  userId=getUserId();
+        userId=getUserId();
+        orderId=getOrderId();
         sendRequestWithOkHttp(tabIndex);
         initViews();
+
         while(true){
             if(dish!=null){
                 init();
@@ -104,6 +106,7 @@ public class MoreFragment extends Fragment {
         }
         return view;
     }
+
     @Override
     public void onResume(){
         super.onResume();
@@ -117,7 +120,11 @@ public class MoreFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
-
+    private String getOrderId(){
+        SharedPreferences pref = getActivity().getSharedPreferences("data", Context.MODE_PRIVATE);
+        String  orderId=pref.getString("orderId", "");
+        return orderId;
+    }
     private String getUserId(){
         SharedPreferences pref = getActivity().getSharedPreferences("data",Context.MODE_PRIVATE);
         String  userId=pref.getString("userId", "");
@@ -283,13 +290,7 @@ public class MoreFragment extends Fragment {
                             String url = HttpUtil.BASE_URL
                                     + "servlet/OrderDetailServlet";
                             // 获得HttpPost对象
-                            HttpPost request = HttpUtil.getHttpPost(url);
-                            // 为请求设置参数
-                            request.setEntity(entity1);
-                            // 获得返回结果
-                            String result = HttpUtil.queryStringForPost(request);
-
-                            goCheckOut();
+                            sendRequest(url,entity1);
                         }
 
                         // 添菜方法
@@ -305,6 +306,20 @@ public class MoreFragment extends Fragment {
                     }
 
             }
+        }
+        private void sendRequest(final String url, final UrlEncodedFormEntity entity1){
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    HttpPost request = HttpUtil.getHttpPost(url);
+                    // 为请求设置参数
+                    request.setEntity(entity1);
+                    // 获得返回结果
+                    String result = HttpUtil.queryStringForPost(request);
+
+                    goCheckOut();
+                }
+            }).start();
         }
     }
 
@@ -345,7 +360,7 @@ public class MoreFragment extends Fragment {
     // 全选或全取消
     private void selectedAll() {
         for (int i = 0; i < shopBeanList.size(); i++) {
-            HotAdapter.getIsSelected().put(i, flag);
+            MoreAdapter.getIsSelected().put(i, flag);
         }
         adapter.notifyDataSetChanged();
     }
@@ -354,7 +369,7 @@ public class MoreFragment extends Fragment {
     private String deleteOrCheckOutShop() {
         StringBuffer sb = new StringBuffer();
         for (int i = 0; i < shopBeanList.size(); i++) {
-            if (HotAdapter.getIsSelected().get(i)) {
+            if (MoreAdapter.getIsSelected().get(i)) {
                 sb.append(i);
                 sb.append(",");
             }

@@ -122,11 +122,9 @@ public class LoginActivity extends Activity {
 		editor.apply();
 		Log.d("LoginActivity", result+"cook");
 		if(result!=null&&result.equals("0")){
-			getResult=true;
 			return false;
 		}else{
 			saveUserMsg(result);
-			getResult=true;
 			return true;
 		}
 	}
@@ -137,6 +135,10 @@ public class LoginActivity extends Activity {
 				try{
 					if(login()){
 						flag=true;
+						getResult=true;
+					}else{
+						flag=false;
+						getResult=true;
 					}
 				}catch(Exception e){
 					e.printStackTrace();
