@@ -151,8 +151,8 @@ public class OrderActivity extends Activity {
 	protected void onActivityResult(int requestCode,int resultCode,Intent data){
 		switch (requestCode){
 		case 1:
-				orderId=data.getStringExtra("data_return");
-				Log.d("OrderActivity",orderId+" li返回");
+
+
 		}
 	
 	}

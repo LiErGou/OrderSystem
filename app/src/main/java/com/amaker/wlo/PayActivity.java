@@ -12,60 +12,60 @@ import android.widget.Toast;
 import com.amaker.util.HttpUtil;
 
 public class PayActivity extends Activity{
-	// ÏÔÊ¾µã²ÍĞÅÏ¢WebView
+	// æ˜¾ç¤ºç‚¹é¤ä¿¡æ¯WebView
 	private WebView wv;
-	// ²éÑ¯µã²ÍĞÅÏ¢°´Å¥ºÍ½áËã°´Å¥
+	// æŸ¥è¯¢ç‚¹é¤ä¿¡æ¯æŒ‰é’®å’Œç»“ç®—æŒ‰é’®
 	private Button queryBtn,payBtn;
-	// ¶©µ¥±àºÅ
+	// è®¢å•ç¼–å·
 	private EditText orderIdEt;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		// ÉèÖÃ±êÌâ
-		setTitle("°²×¿µã²ÍÏµÍ³½áÌ¨½çÃæ");
-		// ÉèÖÃµ±Ç°ActivityµÄ½çÃæ²¼¾Ö
+		// è®¾ç½®æ ‡é¢˜
+		setTitle("å®‰å“ç‚¹é¤ç³»ç»Ÿç»“å°ç•Œé¢");
+		// è®¾ç½®å½“å‰Activityçš„ç•Œé¢å¸ƒå±€
 		setContentView(R.layout.pay);
-		// »ñµÃWebViewÊµÀı
+		// è·å¾—WebViewå®ä¾‹
 		wv = (WebView)findViewById(R.id.pay_webview);
-		// ÊµÀı»¯²éÑ¯°´Å¥
+		// å®ä¾‹åŒ–æŸ¥è¯¢æŒ‰é’®
 		queryBtn = (Button)findViewById(R.id.pay_query_Button01);
-		// ÊµÀı»¯½áËã°´Å¥
+		// å®ä¾‹åŒ–ç»“ç®—æŒ‰é’®
 		payBtn = (Button)findViewById(R.id.pay_Button01);
-		// ÊµÀı»¯¶©µ¥±àºÅ±à¼­¿ò
+		// å®ä¾‹åŒ–è®¢å•ç¼–å·ç¼–è¾‘æ¡†
 		orderIdEt = (EditText)findViewById(R.id.pay_order_number_EditText01);
-		
-		// Ìí¼Ó²éÑ¯µã²ÍĞÅÏ¢¼àÌıÆ÷
+
+		// æ·»åŠ æŸ¥è¯¢ç‚¹é¤ä¿¡æ¯ç›‘å¬å™¨
 		queryBtn.setOnClickListener(queryListener);
-		// Ìí¼Ó½áËãÏ¢¼àÌıÆ÷
+		// æ·»åŠ ç»“ç®—æ¯ç›‘å¬å™¨
 		payBtn.setOnClickListener(payListener);
 	}
-	
-	// ²éÑ¯µã²ÍĞÅÏ¢¼àÌıÆ÷
+
+	// æŸ¥è¯¢ç‚¹é¤ä¿¡æ¯ç›‘å¬å™¨
 	OnClickListener queryListener = new OnClickListener() {
 		@Override
 		public void onClick(View v) {
-			// »ñµÃ¶©µ¥±àºÅ
+			// è·å¾—è®¢å•ç¼–å·
 			String orderId = orderIdEt.getText().toString();
-			// ÇëÇó·şÎñÆ÷url
+			// è¯·æ±‚æœåŠ¡å™¨url
 			String url = HttpUtil.BASE_URL+"servlet/PayServlet?id="+orderId;
-			// ½«·µ»ØĞÅÏ¢ÔÚWebViewÖĞÏÔÊ¾
+			// å°†è¿”å›ä¿¡æ¯åœ¨WebViewä¸­æ˜¾ç¤º
 			wv.loadUrl(url);
 		}
 	};
-	
-	// ½áËã¼àÌıÆ÷
+
+	// ç»“ç®—ç›‘å¬å™¨
 	OnClickListener payListener = new OnClickListener() {
 		@Override
 		public void onClick(View v) {
-			// »ñµÃ¶©µ¥±àºÅ
+			// è·å¾—è®¢å•ç¼–å·
 			String orderId = orderIdEt.getText().toString();
-			// ÇëÇó·şÎñÆ÷url
+			// è¯·æ±‚æœåŠ¡å™¨url
 			String url = HttpUtil.BASE_URL+"servlet/PayMoneyServlet?id="+orderId;
-			// »ñµÃ²éÑ¯½á¹û
+			// è·å¾—æŸ¥è¯¢ç»“æœ
 			String result = HttpUtil.queryStringForPost(url);
-			// ÏÔÊ¾½áËã½á¹û
+			// æ˜¾ç¤ºç»“ç®—ç»“æœ
 			Toast.makeText(PayActivity.this, result, Toast.LENGTH_LONG).show();
-			// Ê¹½áËã°´Å¥Ê§Ğ§
+			// ä½¿ç»“ç®—æŒ‰é’®å¤±æ•ˆ
 			payBtn.setEnabled(false);
 		}
 	};

@@ -17,26 +17,27 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class UserRegisterActivity extends Activity  {
-	
+
 	private EditText userEditText,pwdEditText;
 	private CheckBox manCheckBox,womanCheckBox;
 	private CheckBox likeHotCheckBox,likeSourCheckBox,likeSaltCheckBox,likeSweetCheckBox,dislikeSweetCheckBox,dislikeHotCheckBox,dislikeSourCheckBox,dislikeSaltCheckBox;
 	private CheckBox likeVegCheckBox,likePorkCheckBox,likeChickenDucksChickBox,likeBeefMuttonCheckBox,likeFishCheckBox;
 	private CheckBox dislikeVegCheckBox,dislikePorkCheckBox,dislikeCheckenDucksChickBox,dislikeBeefMuttonCheckBox,dislikeFishCheckBox,disXiangcaiCheckBox;
 	private Button registerBut,backLogin,testBut;
-//	private int lF=0,dF=0,lM=0,dM=0;
+	private boolean getMessage=false,success=false;
+	//	private int lF=0,dF=0,lM=0,dM=0;
 	int lf[]={0,0,0,0};
 	int df[]={0,0,0,0};
 	int lm[]={0,0,0,0,0};
 	int dm[]={0,0,0,0,0,0};
-	int gender=0;//ĞÔ±ğ
+	int gender=0;//æ€§åˆ«
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		// ÉèÖÃ±êÌâ
-		setTitle("°²×¿µã²Í×¢²á½çÃæ");
+		// è®¾ç½®æ ‡é¢˜
+		setTitle("å®‰å“ç‚¹é¤æ³¨å†Œç•Œé¢");
 		setContentView(R.layout.user_register);
 		userEditText = (EditText)findViewById(R.id.userEditText2);
-		// Í¨¹ıfindViewById·½·¨ÊµÀı»¯×é¼ş
+		// é€šè¿‡findViewByIdæ–¹æ³•å®ä¾‹åŒ–ç»„ä»¶
 		manCheckBox=(CheckBox)findViewById(R.id.manCheck);
 		womanCheckBox=(CheckBox)findViewById(R.id.womanCheck);
 		pwdEditText = (EditText)findViewById(R.id.pwdEditText2);
@@ -85,9 +86,9 @@ public class UserRegisterActivity extends Activity  {
 			@Override
 			public void onClick(View v) {
 				finish();
-				
+
 			}
-			
+
 		});
 		testBut.setOnClickListener(new OnClickListener(){
 
@@ -95,9 +96,9 @@ public class UserRegisterActivity extends Activity  {
 			public void onClick(View v) {
 				Intent intent = new Intent(UserRegisterActivity.this,TestActivity.class);
 				startActivity(intent);
-				
+
 			}
-			
+
 		});
 		registerBut.setOnClickListener(new OnClickListener() {
 			@Override
@@ -133,53 +134,69 @@ public class UserRegisterActivity extends Activity  {
 				}else gender=0;
 				if(isSameChoose()){
 					if(validate()){
-						Toast toast=Toast.makeText(getApplicationContext(), "×¢²á³É¹¦", Toast.LENGTH_SHORT); 
-						Toast toast2=Toast.makeText(getApplicationContext(), "ÓÃ»§ÃûÖØ¸´»òÆäËûÔ­Òò£¬×¢²áÊ§°Ü", Toast.LENGTH_SHORT);
-						if(register()!=false){
-							toast.show(); 
+						Toast toast=Toast.makeText(getApplicationContext(), "æ³¨å†ŒæˆåŠŸ", Toast.LENGTH_SHORT);
+						Toast toast2=Toast.makeText(getApplicationContext(), "ç”¨æˆ·åé‡å¤æˆ–å…¶ä»–åŸå› ï¼Œæ³¨å†Œå¤±è´¥", Toast.LENGTH_SHORT);
+						sendMessage();
+						while(true){
+							if(getMessage){
+								break;
+							}
+						}
+						if(success){
+							toast.show();
 						}else{
-							toast2.show(); 
+							toast2.show();
 						}
 					}
 				}
 			}
 		});
-		
+
 	}
-	//ÅĞ¶ÏÊÇ·ñÓĞÎ´Ñ¡
+	//åˆ¤æ–­æ˜¯å¦æœ‰æœªé€‰
 	private boolean isSameChoose(){
-		
+
 		for(int i=0;i<lf.length;i++){
 			if(lf[i]==1&&df[i]==1){
-				Toast toast3=Toast.makeText(getApplicationContext(), "Æ«ºÃ¿ÚÎ¶Óë¼É¿Ú¿ÚÎ¶Ïà³åÍ»£¬ÇëÖØĞÂÑ¡Ôñ", Toast.LENGTH_SHORT);
+				Toast toast3=Toast.makeText(getApplicationContext(), "åå¥½å£å‘³ä¸å¿Œå£å£å‘³ç›¸å†²çªï¼Œè¯·é‡æ–°é€‰æ‹©", Toast.LENGTH_SHORT);
 				toast3.show();
 				return false;
-				
+
 			}
 		}
 		for(int i=0;i<lm.length;i++){
 			if(lm[i]==1&&dm[i]==1){
-				Toast toast3=Toast.makeText(getApplicationContext(), "Æ«ºÃÊ³²ÄÓë¼É¿ÚÊ³²ÄÏà³åÍ»£¬ÇëÖØĞÂÑ¡Ôñ", Toast.LENGTH_SHORT);
+				Toast toast3=Toast.makeText(getApplicationContext(), "åå¥½é£Ÿæä¸å¿Œå£é£Ÿæç›¸å†²çªï¼Œè¯·é‡æ–°é€‰æ‹©", Toast.LENGTH_SHORT);
 				toast3.show();
 				return false;
 			}
 		}
 		if(manCheckBox.isChecked()==false&&womanCheckBox.isChecked()==false) {
-			Toast toast3=Toast.makeText(getApplicationContext(), "Çë¹´Ñ¡ĞÔ±ğ", Toast.LENGTH_SHORT);
+			Toast toast3=Toast.makeText(getApplicationContext(), "è¯·å‹¾é€‰æ€§åˆ«", Toast.LENGTH_SHORT);
 			toast3.show();
 			return false;
 		}
 		return true;
 
 	}
-	//×¢²áº¯Êı
+	private void sendMessage(){
+		new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+				success=register();
+				getMessage=true;
+			}
+		}).start();
+	}
+	//æ³¨å†Œå‡½æ•°
 	private boolean register(){
-		// »ñµÃÓÃ»§Ãû³Æ
+		// è·å¾—ç”¨æˆ·åç§°
 		String username = userEditText.getText().toString();
 		Log.d("LoginActivity", username);
-		// »ñµÃÃÜÂë
+		// è·å¾—å¯†ç 
 		String pwd = pwdEditText.getText().toString();
-		// »ñµÃµÇÂ¼½á¹û
+		// è·å¾—ç™»å½•ç»“æœ
 		String result=query2(username,pwd);
 		Log.d("LoginActivity", result+"cook");
 		if(result!=null&&result.equals("0")){
@@ -192,12 +209,12 @@ public class UserRegisterActivity extends Activity  {
 	private boolean validate(){
 		String username = userEditText.getText().toString();
 		if(username.equals("")){
-			showDialog("ÓÃ»§Ãû³ÆÊÇ±ØÌîÏî£¡");
+			showDialog("ç”¨æˆ·åç§°æ˜¯å¿…å¡«é¡¹ï¼");
 			return false;
 		}
 		String pwd = pwdEditText.getText().toString();
 		if(pwd.equals("")){
-			showDialog("ÓÃ»§ÃÜÂëÊÇ±ØÌîÏî£¡");
+			showDialog("ç”¨æˆ·å¯†ç æ˜¯å¿…å¡«é¡¹ï¼");
 			return false;
 		}
 		return true;
@@ -205,26 +222,26 @@ public class UserRegisterActivity extends Activity  {
 	private void showDialog(String msg){
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setMessage(msg)
-		       .setCancelable(false)
-		       .setPositiveButton("È·¶¨", new DialogInterface.OnClickListener() {
-		           public void onClick(DialogInterface dialog, int id) {
-		           }
-		       });
+				.setCancelable(false)
+				.setPositiveButton("ç¡®å®š", new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog, int id) {
+					}
+				});
 		AlertDialog alert = builder.create();
 		alert.show();
 	}
 	private void saveUserMsg(String msg){
-		// ÓÃ»§±àºÅ
+		// ç”¨æˆ·ç¼–å·
 		String id = "";
-		// ÓÃ»§Ãû³Æ
+		// ç”¨æˆ·åç§°
 		String name = "";
-		// »ñµÃĞÅÏ¢Êı×é
+		// è·å¾—ä¿¡æ¯æ•°ç»„
 		String[] msgs = msg.split(";");
 		int idx = msgs[0].indexOf("=");
 		id = msgs[0].substring(idx+1);
 		idx = msgs[1].indexOf("=");
 		name = msgs[1].substring(idx+1);
-		// ¹²ÏíĞÅÏ¢
+		// å…±äº«ä¿¡æ¯
 		SharedPreferences pre = getSharedPreferences("user_msg", MODE_WORLD_WRITEABLE);
 		SharedPreferences.Editor editor = pre.edit();
 		editor.putString("id", id);
@@ -232,7 +249,7 @@ public class UserRegisterActivity extends Activity  {
 		editor.commit();
 	}
 	private String query2(String account,String password){
-		// ²éÑ¯²ÎÊı
+		// æŸ¥è¯¢å‚æ•°
 		String lfStr="";
 		for(int i=0;i<lf.length;i++){
 			lfStr=lfStr+"&lf["+i+"]="+lf[i];
@@ -252,11 +269,11 @@ public class UserRegisterActivity extends Activity  {
 		//String queryString = "account="+account+"&password="+password+"&likeFlavor="+lF+"&dislikeFlavor="+dF+"&likeMaterial="+lM+"&dislikeMaterial="+dM+"&a[0]=10&a[1]=11&a[2]=12";
 		// url
 		String queryString = "account="+account+"&password="+password+"&gender="+gender+lfStr+dfStr+lmStr+dmStr;
-		
+
 		String url = HttpUtil.BASE_URL+"servlet/UserRegisterServlet?"+queryString;
 		Log.d("LoginActivity", "url="+url+"cook");
-		// ²éÑ¯·µ»Ø½á¹û
+		// æŸ¥è¯¢è¿”å›ç»“æœ
 		return HttpUtil.queryStringForPost(url);
-    }
-	
+	}
+
 }
