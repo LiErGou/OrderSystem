@@ -1,7 +1,10 @@
 package com.amaker.wlo;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -26,8 +29,20 @@ public class TestActivity extends Activity {
 	private String initStartDateTime = ""; // 初始化开始时间
 	private String initEndDateTime = "2017年5月23日 17:44"; // 初始化结束时间
 	private Spinner spinner;
-	private boolean getRuslt=false;
-	private boolean reserveSuccess=false;
+	Handler handler = new Handler() {
+
+		@Override
+		public void handleMessage(Message msg) {
+			if(msg.what==1)
+			{
+				Toast.makeText(getApplicationContext(), "预约成功", Toast.LENGTH_SHORT).show();
+			}else{
+				Toast.makeText(getApplicationContext(), "预约失败", Toast.LENGTH_SHORT).show();
+			}
+
+		}
+
+	};
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -52,18 +67,6 @@ public class TestActivity extends Activity {
 			@Override
 			public void onClick(View view) {
 				sendResquest();
-				while(true){
-					if(getRuslt)
-						break;
-				}
-				if(reserveSuccess){
-					Toast.makeText(getApplicationContext(), "预约成功", Toast.LENGTH_SHORT).show();
-					getRuslt=false;
-				}else{
-					Toast.makeText(getApplicationContext(), "预约失败", Toast.LENGTH_SHORT).show();
-
-				}
-
 			}
 		});
 
@@ -79,10 +82,15 @@ public class TestActivity extends Activity {
 	}
 	private void sendResquest(){
 		new Thread(new Runnable() {
+			Message msg = handler.obtainMessage();
 			@Override
 			public void run() {
-				reserveSuccess=reserve();
-				getRuslt=true;
+				if(reserve()){
+					msg.what=1;
+				}else{
+					msg.what=0;
+				}
+			handler.sendMessage(msg);
 			}
 		}).start();
 	}

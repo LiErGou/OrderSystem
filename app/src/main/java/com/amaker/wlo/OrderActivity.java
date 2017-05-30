@@ -28,7 +28,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
+
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
@@ -54,6 +54,7 @@ import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 
 import com.amaker.util.HttpUtil;
+import com.gc.materialdesign.views.Button;
 
 import java.io.UnsupportedEncodingException;
 
@@ -61,7 +62,7 @@ import org.apache.http.client.methods.HttpPost;
 
 public class OrderActivity extends Activity {
 
-	private Button startBtn,hotMenuBtn,customizedBtn;
+	private Button startBtn,hotMenuBtn;
 	private String orderId=null;
 	private String ShopId;
 	private String userId;
@@ -108,8 +109,6 @@ public class OrderActivity extends Activity {
 		setTableAdapter();
 		hotMenuBtn=(Button) findViewById(R.id.hotmenu);
 		
-		customizedBtn=(Button) findViewById(R.id.custommenu);
-		
 		// 实例化开桌按钮
 		startBtn = (Button) findViewById(R.id.startButton02);
 		// 为开桌按钮添加监听器
@@ -120,16 +119,6 @@ public class OrderActivity extends Activity {
 
 			public void onClick(View v) {
 				Intent intent = new Intent(OrderActivity.this,HotMenuActivity.class);
-				intent.putExtra("extra_date",orderId);
-				startActivityForResult(intent,1);
-				
-			}
-			
-		});
-		customizedBtn.setOnClickListener(new OnClickListener(){
-
-			public void onClick(View v) {
-				Intent intent = new Intent(OrderActivity.this,CustomizedActivity.class);
 				intent.putExtra("extra_date",orderId);
 				startActivityForResult(intent,1);
 				

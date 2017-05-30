@@ -10,6 +10,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -27,8 +29,22 @@ public class LoginActivity extends Activity {
 	private EditText userEditText,pwdEditText;
 	private CheckBox workerCheckBox,guestCheckBox;
 	private String userId;
-	private boolean flag=false,getResult=false;
 	int isGuest=2;
+	Handler handler = new Handler() {
+
+		@Override
+		public void handleMessage(Message msg) {
+			if(msg.what==1)
+			{
+				Intent intent = new Intent(LoginActivity.this,MainMenuActivity.class);
+				startActivity(intent);
+			}else{
+				showDialog("用户名称或者密码错误，请重新输入！");
+			}
+
+		}
+
+	};
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		// 设置标题
@@ -68,16 +84,6 @@ public class LoginActivity extends Activity {
 			public void onClick(View v) {
 				Intent intent = new Intent(LoginActivity.this,UserRegisterActivity.class);
 				startActivity(intent);
-				
-				/*if(validate()){
-					Toast toast=Toast.makeText(getApplicationContext(), "注册成功", Toast.LENGTH_SHORT); 
-					Toast toast2=Toast.makeText(getApplicationContext(), "注册失败", Toast.LENGTH_SHORT);
-					if(register()!=false){
-						toast.show(); 
-					}else{
-						toast2.show(); 
-					}
-				}*/
 			}
 		});
 
@@ -89,18 +95,6 @@ public class LoginActivity extends Activity {
 				}else isGuest=0;
 				if(validate()){
 					sendRequest();
-					while(true){
-						if(getResult==true){
-							break;
-						}
-					}
-					if(flag){
-						Intent intent = new Intent(LoginActivity.this,MainMenuActivity.class);
-						startActivity(intent);
-						getResult=false;
-					}else{
-						showDialog("用户名称或者密码错误，请重新输入！");
-					}
 				}
 			}
 		});
@@ -132,14 +126,14 @@ public class LoginActivity extends Activity {
 		new Thread(new Runnable(){
 			@Override
 			public void run() {
+				Message msg = handler.obtainMessage();
 				try{
 					if(login()){
-						flag=true;
-						getResult=true;
+						msg.what=1;
 					}else{
-						flag=false;
-						getResult=true;
+						msg.what=0;
 					}
+					handler.sendMessage(msg);
 				}catch(Exception e){
 					e.printStackTrace();
 				}

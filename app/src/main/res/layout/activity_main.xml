@@ -24,24 +24,24 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
 
-        <Button
+        <com.gc.materialdesign.views.ButtonRectangle
         android:id="@+id/startButton02"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="#1E88E5"
         android:text="@string/myShop" />
-        
 
-       <Button
+
+        <com.gc.materialdesign.views.ButtonRectangle
         android:id="@+id/hotmenu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="热门菜品" />
-       
-       <Button
-        android:id="@+id/custommenu"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="个性菜品" />
+           android:background="#1E88E5"
+            android:layout_weight="1"
+        android:text="推荐菜品" />
+
+
 
     </LinearLayout>
     
