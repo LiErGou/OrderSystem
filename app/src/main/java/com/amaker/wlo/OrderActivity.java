@@ -270,7 +270,7 @@ public class OrderActivity extends Activity {
 				e.printStackTrace();
 			}
 			// 请求服务器url
-			String url = HttpUtil.BASE_URL + "servlet/StartTableServlet";
+			String url = getUrlFromSp() + "servlet/StartTableServlet";
 			// 获得请求对象HttpPost
 			HttpPost request = HttpUtil.getHttpPost(url);
 			// 设置查询参数
@@ -287,7 +287,11 @@ public class OrderActivity extends Activity {
 					Toast.LENGTH_LONG).show();
 		}
 	};
-
+	public String getUrlFromSp(){
+		SharedPreferences pref = getSharedPreferences("data",MODE_PRIVATE);
+		String  url=pref.getString("url", "");
+		return url;
+	}
 	private void getResult(final HttpPost request){
 		new Thread(new Runnable() {
 			@Override
@@ -546,7 +550,7 @@ public class OrderActivity extends Activity {
 							e.printStackTrace();
 						}
 						// 请求服务器Servlet的url
-						String url = HttpUtil.BASE_URL
+						String url = getUrlFromSp()
 								+ "servlet/OrderDetailServlet";
 						// 获得HttpPost对象
 						HttpPost request = HttpUtil.getHttpPost(url);

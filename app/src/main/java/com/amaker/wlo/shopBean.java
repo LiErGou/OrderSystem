@@ -1,5 +1,7 @@
 package com.amaker.wlo;
 
+import android.content.SharedPreferences;
+
 import com.amaker.util.HttpUtil;
 
 public class shopBean {
@@ -63,7 +65,8 @@ public class shopBean {
 	public String getPicUrl() {
 		return picUrl;
 	}
-	public void setPicUrl(String pic) {
-		this.picUrl = HttpUtil.BASE_URL+"servlet/GetDishPicServlet?image="+pic;
+	public void setPicUrl(String picUrl) {
+		this.picUrl = picUrl;
 	}
+
 }

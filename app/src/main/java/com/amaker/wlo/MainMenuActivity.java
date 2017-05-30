@@ -45,7 +45,7 @@ public class MainMenuActivity extends Activity {
     private String userId;
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setTitle("°²×¿µã²ÍÏµÍ³Ö÷½çÃæ");
+        setTitle("ï¿½ï¿½×¿ï¿½ï¿½ï¿½ÏµÍ³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
         setContentView(R.layout.main_menu);
         orderButton=(Button)findViewById(R.id.orderButton);
         checkTableTable=(Button)findViewById(R.id.checkTableTable);
@@ -66,74 +66,74 @@ public class MainMenuActivity extends Activity {
     	String  userId=pref.getString("userId", "");
     	return userId;
     }
-    // ¼Ì³ÐBaseAdapter
+    // ï¿½Ì³ï¿½BaseAdapter
     public class ImageAdapter extends BaseAdapter {
-    	// ÉÏÏÂÎÄ
+    	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         private Context mContext;
-        // ¹¹Ôì·½·¨
+        // ï¿½ï¿½ï¿½ì·½ï¿½ï¿½
         public ImageAdapter(Context c) {
             mContext = c;
         }
-        // ×é¼þ¸öÊý
+        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         public int getCount() {
             return mThumbIds.length;
         }
-        // µ±Ç°×é¼þ
+        // ï¿½ï¿½Ç°ï¿½ï¿½ï¿½
         public Object getItem(int position) {
             return null;
         }
-        // µ±Ç°×é¼þid
+        // ï¿½ï¿½Ç°ï¿½ï¿½ï¿½id
         public long getItemId(int position) {
             return 0;
         }
-        // »ñµÃµ±Ç°ÊÓÍ¼
+        // ï¿½ï¿½Ãµï¿½Ç°ï¿½ï¿½Í¼
         public View getView(int position, View convertView, ViewGroup parent) {
-        	// ÉùÃ÷Í¼Æ¬ÊÓÍ¼
+        	// ï¿½ï¿½ï¿½ï¿½Í¼Æ¬ï¿½ï¿½Í¼
             ImageView imageView;
             if (convertView == null) {
-            	// ÊµÀý»¯Í¼Æ¬ÊÓÍ¼
+            	// Êµï¿½ï¿½Í¼Æ¬ï¿½ï¿½Í¼
                 imageView = new ImageView(mContext);
-                // ÉèÖÃÍ¼Æ¬ÊÓÍ¼ÊôÐÔ
+                // ï¿½ï¿½ï¿½ï¿½Í¼Æ¬ï¿½ï¿½Í¼ï¿½ï¿½ï¿½ï¿½
                 imageView.setLayoutParams(new GridView.LayoutParams(85, 85));
                 imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
                 imageView.setPadding(8, 8, 8, 8);
             } else {
                 imageView = (ImageView) convertView;
             }
-            // ÉèÖÃÍ¼Æ¬ÊÓÍ¼Í¼Æ¬×ÊÔ´
+            // ï¿½ï¿½ï¿½ï¿½Í¼Æ¬ï¿½ï¿½Í¼Í¼Æ¬ï¿½ï¿½Ô´
             imageView.setImageResource(mThumbIds[position]);
-            // Îªµ±Ç°ÊÓÍ¼Ìí¼Ó¼àÌýÆ÷
+            // Îªï¿½ï¿½Ç°ï¿½ï¿½Í¼ï¿½ï¿½Ó¼ï¿½ï¿½ï¿½ï¿½ï¿½
             switch (position) {
 			case 0:
-				// Ìí¼Óµã²Í¼àÌýÆ÷
+				// ï¿½ï¿½Óµï¿½Í¼ï¿½ï¿½ï¿½ï¿½ï¿½
 				imageView.setOnClickListener(orderLinstener);
 				break;
 			case 1:
-				// ²¢Ì¨¼àÌýÆ÷
+				// ï¿½ï¿½Ì¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				imageView.setOnClickListener(unionTableLinstener);
 				break;
 			case 2:
-				// Ìí¼Ó×ªÌ¨¼àÌýÆ÷
+				// ï¿½ï¿½ï¿½×ªÌ¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				imageView.setOnClickListener(changeTableLinstener);
 				break;
 			case 3:
-				// Ìí¼Ó²éÌ¨¼àÌýÆ÷
+				// ï¿½ï¿½Ó²ï¿½Ì¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				imageView.setOnClickListener(checkTableLinstener);
 				break;
 			case 4:
-				// Ìí¼Ó¸üÐÂ¼àÌýÆ÷
+				// ï¿½ï¿½Ó¸ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½ï¿½
 				imageView.setOnClickListener(updateLinstener);
 				break;
 			case 5:
-				// Ìí¼Ó²Ëµ¥¼àÌýÆ÷
+				// ï¿½ï¿½Ó²Ëµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				imageView.setOnClickListener(menuLinstener);
 				break;		
 			case 6:
-				// Ìí¼Ó×¢Ïú¼àÌýÆ÷
+				// ï¿½ï¿½ï¿½×¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				imageView.setOnClickListener(exitLinstener);
 				break;
 			case 7:
-				// Ìí¼Ó½áËã¼àÌýÆ÷
+				// ï¿½ï¿½Ó½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 				imageView.setOnClickListener(payLinstener);
 				break;
 			default:
@@ -142,7 +142,7 @@ public class MainMenuActivity extends Activity {
             
             return imageView;
         }
-        // Í¼Æ¬×ÊÔ´Êý×é
+        // Í¼Æ¬ï¿½ï¿½Ô´ï¿½ï¿½ï¿½ï¿½
         private Integer[] mThumbIds = {
                 R.drawable.diancai, R.drawable.bingtai,
                 R.drawable.zhuantai, R.drawable.chatai,
@@ -152,73 +152,73 @@ public class MainMenuActivity extends Activity {
     }
    
     
-    // ¸üÐÂ¼àÌýÆ÷
+    // ï¿½ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½ï¿½
     OnClickListener updateLinstener = new OnClickListener() {
 		@Override
 		public void onClick(View v) {
 			Intent intent = new Intent();
-			// Æô¶¯½áËãActivity
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Activity
 			intent.setClass(MainMenuActivity.this, UpdateActivity.class);
 			startActivity(intent);
 		}
 	};
 	
 	
-	 // ²Ëµ¥¼àÌýÆ÷
+	 // ï¿½Ëµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     OnClickListener menuLinstener = new OnClickListener() {
 		@Override
 		public void onClick(View v) {
 			Intent intent = new Intent();
-			// Æô¶¯½áËãActivity
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Activity
 			intent.setClass(MainMenuActivity.this, AddAndSubView.class);
 			startActivity(intent);
 		}
 	};
     
-    // ²éÌ¨¼àÌýÆ÷
+    // ï¿½ï¿½Ì¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     OnClickListener checkTableLinstener = new OnClickListener() {
 		@Override
 		public void onClick(View v) {
 			Intent intent = new Intent();
-			// Æô¶¯½áËãActivity
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Activity
 			intent.setClass(MainMenuActivity.this, CheckTableActivity.class);
 			startActivity(intent);
 		}
 	};
     
-    // ½áËã¼àÌýÆ÷
+    // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     OnClickListener payLinstener = new OnClickListener() {
 		@Override
 		public void onClick(View v) {
 			Intent intent = new Intent();
-			// Æô¶¯½áËãActivity
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Activity
 			intent.setClass(MainMenuActivity.this, PayActivity.class);
 			startActivity(intent);
 		}
 	};
     
-    // ¶©²Í¼àÌýÆ÷
+    // ï¿½ï¿½ï¿½Í¼ï¿½ï¿½ï¿½ï¿½ï¿½
     OnClickListener orderLinstener = new OnClickListener() {
 		@Override
 		public void onClick(View v) {
 			Intent intent = new Intent();
-			// Æô¶¯¶©²ÍActivity
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Activity
 			intent.setClass(MainMenuActivity.this, OrderActivity.class);
 			startActivity(intent);
 		}
 	};
-	// ×¢Ïú¼àÌýÆ÷
+	// ×¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     OnClickListener exitLinstener = new OnClickListener() {
 		@Override
 		public void onClick(View v) {
 			Intent intent = new Intent();
-			// Æô¶¯¶©²ÍActivity
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Activity
 			intent.setClass(MainMenuActivity.this, ReserveActivity.class);
 			startActivity(intent);
 		}
 	};
 	
-	// ×ªÌ¨¼àÌýÆ÷
+	// ×ªÌ¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     OnClickListener changeTableLinstener = new OnClickListener() {
 		@Override
 		public void onClick(View v) {
@@ -226,7 +226,7 @@ public class MainMenuActivity extends Activity {
 		}
 	};
 	
-	// ²¢Ì¨¼àÌýÆ÷
+	// ï¿½ï¿½Ì¨ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     OnClickListener unionTableLinstener = new OnClickListener() {
 		@Override
 		public void onClick(View v) {
@@ -235,37 +235,37 @@ public class MainMenuActivity extends Activity {
 	};
 	
 	
-	// »»Ì¨ÏµÍ³
+	// ï¿½ï¿½Ì¨ÏµÍ³
 	private void changeTable(){
-		// »ñµÃLayoutInflaterÊµÀý
+		// ï¿½ï¿½ï¿½LayoutInflaterÊµï¿½ï¿½
 		LayoutInflater inflater = LayoutInflater.from(this);
-		// »ñµÃLinearLayoutÊÓÍ¼ÊµÀý
+		// ï¿½ï¿½ï¿½LinearLayoutï¿½ï¿½Í¼Êµï¿½ï¿½
 		View v =inflater.inflate(R.layout.change_table, null);
-		// ´ÓLinearLayoutÖÐ»ñµÃEditTextÊµÀý
+		// ï¿½ï¿½LinearLayoutï¿½Ð»ï¿½ï¿½EditTextÊµï¿½ï¿½
 		final EditText et1 = (EditText) v.findViewById(R.id.change_table_order_number_EditText);
 		final EditText et2 = (EditText) v.findViewById(R.id.change_table_no_EditText);
 		
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setMessage(" ÕæµÄÒª»»×ÀÎ»Âð£¿")
+		builder.setMessage(" ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½")
 		       .setCancelable(false)
 		       .setView(v)
-		       .setPositiveButton("È·¶¨", new DialogInterface.OnClickListener() {
+		       .setPositiveButton("È·ï¿½ï¿½", new DialogInterface.OnClickListener() {
 		           public void onClick(DialogInterface dialog, int id) {
-		        	// »ñµÃ¶©µ¥ºÅ
+		        	// ï¿½ï¿½Ã¶ï¿½ï¿½ï¿½ï¿½ï¿½
 		        	String orderId = et1.getText().toString();
-		        	// »ñµÃ×ÀºÅ
+		        	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		       		String tableId = et2.getText().toString();
-		       		// ²éÑ¯²ÎÊý
+		       		// ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½
 		       		String queryString = "orderId="+orderId+"&tableId="+tableId;
 		       		// url
-		       		String url = HttpUtil.BASE_URL+"servlet/ChangeTableServlet?"+queryString;
-		       		// ²éÑ¯·µ»Ø½á¹û
+		       		String url = getUrlFromSp()+"servlet/ChangeTableServlet?"+queryString;
+		       		// ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½Ø½ï¿½ï¿½
 		       		String result = HttpUtil.queryStringForPost(url);
-		       		// ÏÔÊ¾½á¹û
+		       		// ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½
 		       		Toast.makeText(MainMenuActivity.this,result,Toast.LENGTH_LONG).show();
 		           }
 		       })
-		       .setNegativeButton("È¡Ïû", new DialogInterface.OnClickListener() {
+		       .setNegativeButton("È¡ï¿½ï¿½", new DialogInterface.OnClickListener() {
 		           public void onClick(DialogInterface dialog, int id) {
 		                dialog.cancel();
 		           }
@@ -273,44 +273,48 @@ public class MainMenuActivity extends Activity {
 		AlertDialog alert = builder.create();
 		alert.show();
 	}
+	public String getUrlFromSp(){
+		SharedPreferences pref = getSharedPreferences("data",MODE_PRIVATE);
+		String  url=pref.getString("url", "");
+		return url;
+	}
 	
-	
-	// ²¢Ì¨ÏµÍ³
+	// ï¿½ï¿½Ì¨ÏµÍ³
 	private void unionTable(){
-		// ÊµÀý»¯LayoutInflater
+		// Êµï¿½ï¿½LayoutInflater
 		LayoutInflater inflater = LayoutInflater.from(this);
-		// »ñµÃ×Ô¶¨ÒåÊÓÍ¼
+		// ï¿½ï¿½ï¿½ï¿½Ô¶ï¿½ï¿½ï¿½ï¿½ï¿½Í¼
 		View v =inflater.inflate(R.layout.union_table, null);
-		// »ñµÃSpinner
+		// ï¿½ï¿½ï¿½Spinner
 		final Spinner spinner1 = (Spinner) v.findViewById(R.id.union_table_Spinner1);
 		final Spinner spinner2 = (Spinner) v.findViewById(R.id.union_table_Spinner2);
-		// ·ÃÎÊ·þÎñÆ÷µÄURL
-		String urlStr = HttpUtil.BASE_URL + "servlet/UnionTableServlet";
+		// ï¿½ï¿½ï¿½Ê·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½URL
+		String urlStr = getUrlFromSp() + "servlet/UnionTableServlet";
 		try {
-			// ÊµÀý»¯URL
+			// Êµï¿½ï¿½URL
 			URL url = new URL(urlStr);
-			// URLConnection ÊµÀý
+			// URLConnection Êµï¿½ï¿½
 			URLConnection conn = url.openConnection();
-			// »ñµÃÊäÈëÁ÷
+			// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			InputStream in = conn.getInputStream();
-			// »ñµÃDocumentBuilderFactory¶ÔÏó
+			// ï¿½ï¿½ï¿½DocumentBuilderFactoryï¿½ï¿½ï¿½ï¿½
 			DocumentBuilderFactory factory = DocumentBuilderFactory
 					.newInstance();
-			// »ñµÃDocumentBuilder¶ÔÏó
+			// ï¿½ï¿½ï¿½DocumentBuilderï¿½ï¿½ï¿½ï¿½
 			DocumentBuilder builder = factory.newDocumentBuilder();
-			// »ñµÃDocument¶ÔÏó
+			// ï¿½ï¿½ï¿½Documentï¿½ï¿½ï¿½ï¿½
 			Document doc = builder.parse(in);
-			// »ñµÃ½ÚµãÁÐ±í
+			// ï¿½ï¿½Ã½Úµï¿½ï¿½Ð±ï¿½
 			NodeList nl = doc.getElementsByTagName("table");
-			// SpinnerÊý¾Ý
+			// Spinnerï¿½ï¿½ï¿½
 			List items = new ArrayList();
 			
-			// »ñµÃXMLÊý¾Ý
+			// ï¿½ï¿½ï¿½XMLï¿½ï¿½ï¿½
 			for (int i = 0; i < nl.getLength(); i++) {
-				// ×ÀÎ»±àºÅ
+				// ï¿½ï¿½Î»ï¿½ï¿½ï¿½
 				String id = doc.getElementsByTagName("id")
 						.item(i).getFirstChild().getNodeValue();
-				// ×ÀºÅ
+				// ï¿½ï¿½ï¿½ï¿½
 				int num = Integer.parseInt(doc.getElementsByTagName("num")
 						.item(i).getFirstChild().getNodeValue());
 				Map data = new HashMap();
@@ -318,38 +322,38 @@ public class MainMenuActivity extends Activity {
 				items.add(data);
 			}
 			
-			// »ñµÃSpinnerAdapter
+			// ï¿½ï¿½ï¿½SpinnerAdapter
 			SpinnerAdapter as = new 
 			SimpleAdapter(this, items, 
 					android.R.layout.simple_spinner_item,
 					new String[] { "id" }, new int[] { android.R.id.text1 });
 			
-			// °ó¶¨Êý¾Ý
+			// ï¿½ï¿½ï¿½ï¿½ï¿½
 			spinner1.setAdapter(as);
 			spinner2.setAdapter(as);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setMessage(" ÕæµÄÒª²¢×ÀÂð£¿")
+		builder.setMessage(" ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½")
 		       .setCancelable(false)
 		       .setView(v)
-		       .setPositiveButton("È·¶¨", new DialogInterface.OnClickListener() {
+		       .setPositiveButton("È·ï¿½ï¿½", new DialogInterface.OnClickListener() {
 		           public void onClick(DialogInterface dialog, int id) {
 		        	   TextView tv1 = (TextView) spinner1.getSelectedView();
 		        	   TextView tv2 = (TextView) spinner2.getSelectedView();
 		        	   
 		        	   String tableId1 = tv1.getText().toString();
 		        	   String tableId2 = tv2.getText().toString();
-		        		// ²éÑ¯²ÎÊý
+		        		// ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½ï¿½
 		       			String queryString = "tableId1="+tableId1+"&tableId2="+tableId2;
 		       			// url
-		       			String url = HttpUtil.BASE_URL+"servlet/UnionTableServlet2?"+queryString;
-		       			// ²éÑ¯·µ»Ø½á¹û
+		       			String url = getUrlFromSp()+"servlet/UnionTableServlet2?"+queryString;
+		       			// ï¿½ï¿½Ñ¯ï¿½ï¿½ï¿½Ø½ï¿½ï¿½
 		       			String result =  HttpUtil.queryStringForPost(url);
 		           }
 		       })
-		       .setNegativeButton("È¡Ïû", new DialogInterface.OnClickListener() {
+		       .setNegativeButton("È¡ï¿½ï¿½", new DialogInterface.OnClickListener() {
 		           public void onClick(DialogInterface dialog, int id) {
 		                dialog.cancel();
 		           }
@@ -359,12 +363,12 @@ public class MainMenuActivity extends Activity {
 	}
 	
 	
-	// ÍË³öÏµÍ³
+	// ï¿½Ë³ï¿½ÏµÍ³
 	private void logout(){
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setMessage("ÕæµÄÒªÍË³öÏµÍ³Âð£¿")
+		builder.setMessage("ï¿½ï¿½ï¿½Òªï¿½Ë³ï¿½ÏµÍ³ï¿½ï¿½")
 		       .setCancelable(false)
-		       .setPositiveButton("È·¶¨", new DialogInterface.OnClickListener() {
+		       .setPositiveButton("È·ï¿½ï¿½", new DialogInterface.OnClickListener() {
 		           public void onClick(DialogInterface dialog, int id) {
 			        	  SharedPreferences pres = getSharedPreferences("user_msg", MODE_WORLD_WRITEABLE);
 			        	  SharedPreferences.Editor editor = pres.edit();
@@ -378,7 +382,7 @@ public class MainMenuActivity extends Activity {
 					
  }
 		       })
-		       .setNegativeButton("È¡Ïû", new DialogInterface.OnClickListener() {
+		       .setNegativeButton("È¡ï¿½ï¿½", new DialogInterface.OnClickListener() {
 		           public void onClick(DialogInterface dialog, int id) {
 		                dialog.cancel();
 		           }

@@ -5,7 +5,11 @@ import java.util.List;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,17 +41,46 @@ public class CheckTableActivity extends Activity{
         // 实例化
         gv = (GridView) findViewById(R.id.check_table_gridview);
         //获得餐桌列表
-        getTableList();
+        sendMsg();
         // 为GridView绑定数据
         gv.setAdapter(new ImageAdapter(this));
     }
-
+    public String getUrlFromSp(){
+        SharedPreferences pref = getSharedPreferences("data",MODE_PRIVATE);
+        String  url=pref.getString("url", "");
+        return url;
+    }
     // 获得餐桌信息列表，信息包括桌号和状态
-    private void getTableList(){
+    Handler handler = new Handler() {
+
+        @Override
+        public void handleMessage(Message msg) {
+           String result=(String)msg.obj;
+            getTableList(result);
+        }
+
+    };
+    private void sendMsg(){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                String url = getUrlFromSp()+"servlet/CheckTableServlet";
+                Message msg = handler.obtainMessage();
+                try{
+                    String result = HttpUtil.queryStringForPost(url);
+                    msg.obj=result;
+                    handler.sendMessage(msg);
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+                // 查询返回结果
+
+            }
+        }).start();
+    }
+    private void getTableList(String result){
         // 访问服务器url
-        String url = HttpUtil.BASE_URL+"servlet/CheckTableServlet";
-        // 查询返回结果
-        String result = HttpUtil.queryStringForPost(url);
+
         // 拆分字符串，转换成对象，添加到列表
         String[] strs = result.split(";");
         for (int i = 0; i < strs.length; i++) {

@@ -18,6 +18,7 @@ import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
@@ -112,9 +113,14 @@ public class UpdateActivity extends ListActivity {
 	//在该类中定义一个更新菜谱表的方法updateMenu（），该方法调用服务器Servlet获得XML格式的输入流，
 	//通过Java DOM解析该XML获得菜谱表数据,将数据保存到本地SQLite数据库中
 	// 更新菜谱表
+	public String getUrlFromSp(){
+		SharedPreferences pref = getSharedPreferences("data",MODE_PRIVATE);
+		String  url=pref.getString("url", "");
+		return url;
+	}
 	private void updateMenu() {
 		// 访问服务器url
-		String urlStr = HttpUtil.BASE_URL + "servlet/UpdateServlet";
+		String urlStr =getUrlFromSp() + "servlet/UpdateServlet";
 		try {
 			// 实例化URL对象
 			URL url = new URL(urlStr);
@@ -214,7 +220,7 @@ public class UpdateActivity extends ListActivity {
 	// 更新桌号表
 	private void updateTable() {
 		// 访问服务器url
-		String urlStr = HttpUtil.BASE_URL + "servlet/UpdateTableServlet";
+		String urlStr = getUrlFromSp() + "servlet/UpdateTableServlet";
 		//SQLiteDatabase db = new DBHelper(getBaseContext()).getWritableDatabase();
 		try {
 			// 实例化URL对象

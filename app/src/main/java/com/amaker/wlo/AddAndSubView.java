@@ -10,6 +10,7 @@ import java.net.URLConnection;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.graphics.Bitmap;
@@ -36,34 +37,24 @@ import com.amaker.util.HttpUtil;
 {
 	/*采用Gallery形式显示网络图片*/
     private Gallery myGallery01;
-    
+    public String getUrlFromSp(){
+        SharedPreferences pref = getSharedPreferences("data",MODE_PRIVATE);
+        String  url=pref.getString("url", "");
+        return url;
+    }
     /*地址栏字符串*/
     private String[] myImageURL = new String[]
      {
-      
-       HttpUtil.BASE_URL+"image/caidan/dx1.png",
-       HttpUtil.BASE_URL+"image/caidan/dx2.png",
-       HttpUtil.BASE_URL+"image/caidan/dx3.png",
-       HttpUtil.BASE_URL+"image/caidan/dx4.png",
-       HttpUtil.BASE_URL+"image/caidan/dx5.png",
-       HttpUtil.BASE_URL+"image/caidan/lc1.png",
-       HttpUtil.BASE_URL+"image/caidan/lc2.png",
-       HttpUtil.BASE_URL+"image/caidan/lc3.png",
-       HttpUtil.BASE_URL+"image/caidan/lc4.png",
-       HttpUtil.BASE_URL+"image/caidan/lc5.png",
-       HttpUtil.BASE_URL+"image/caidan/rc1.png",
-       HttpUtil.BASE_URL+"image/caidan/rc2.png",
-       HttpUtil.BASE_URL+"image/caidan/rc3.png",
-       HttpUtil.BASE_URL+"image/caidan/rc4.png",
-       HttpUtil.BASE_URL+"image/caidan/rc5.png",
-       HttpUtil.BASE_URL+"image/caidan/rc1.png",
-       HttpUtil.BASE_URL+"image/caidan/tp1.png",
-       HttpUtil.BASE_URL+"image/caidan/tp2.png",
-       HttpUtil.BASE_URL+"image/caidan/tp3.png",
-       HttpUtil.BASE_URL+"image/caidan/yl1.png",
-       HttpUtil.BASE_URL+"image/caidan/yl2.png",
-       HttpUtil.BASE_URL+"image/caidan/zs1.png",
-       HttpUtil.BASE_URL+"image/caidan/zs2.png",
+
+             getUrlFromSp()+"image/caidan/dx1.png",
+             getUrlFromSp()+"image/caidan/dx2.png",
+             getUrlFromSp()+"image/caidan/dx3.png",
+             getUrlFromSp()+"image/caidan/dx4.png",
+             getUrlFromSp()+"image/caidan/dx5.png",
+             getUrlFromSp()+"image/caidan/lc1.png",
+             getUrlFromSp()+"image/caidan/lc2.png",
+             getUrlFromSp()+"image/caidan/lc3.png",
+
       };
  
   /** Called when the activity is first created. */
@@ -368,7 +359,7 @@ import com.amaker.util.HttpUtil;
   }
      /**
      * 设置EditText视图的最小高度
-      * @param  EditText的最小高度，单位px
+      * @param  ，单位px
      */
     public void setEditTextMinimumWidth(int editTextMinimumWidth)
      {

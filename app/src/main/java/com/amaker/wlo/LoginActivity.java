@@ -39,7 +39,8 @@ public class LoginActivity extends Activity {
 				Intent intent = new Intent(LoginActivity.this,MainMenuActivity.class);
 				startActivity(intent);
 			}else{
-				showDialog("用户名称或者密码错误，请重新输入！");
+				Toast.makeText(LoginActivity.this,"用户名称或者密码错误，请重新输入！", Toast.LENGTH_LONG).show();
+
 			}
 
 		}
@@ -98,6 +99,11 @@ public class LoginActivity extends Activity {
 				}
 			}
 		});
+	}
+	public String getUrlFromSp(){
+		SharedPreferences pref = getSharedPreferences("data",MODE_PRIVATE);
+		String  url=pref.getString("url", "");
+		return url;
 	}
 	// 登录方法
 	@SuppressLint("NewApi")
@@ -199,7 +205,7 @@ public class LoginActivity extends Activity {
 		// 查询参数
 		String queryString = "account="+account+"&password="+password+"&station="+isGuest;
 		// url
-		String url = HttpUtil.BASE_URL+"servlet/LoginServlet?"+queryString;
+		String url = getUrlFromSp()+"servlet/LoginServlet?"+queryString;
 		Log.d("LoginActivity", url);
 		// 查询返回结果
 		return HttpUtil.queryStringForPost(url);

@@ -1,7 +1,11 @@
 package com.amaker.wlo;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.webkit.WebView;
@@ -39,7 +43,31 @@ public class PayActivity extends Activity{
 		// 添加结算息监听器
 		payBtn.setOnClickListener(payListener);
 	}
+	Handler handler=new Handler(){
+		@Override
+		public void handleMessage(Message msg) {
 
+			String result=(String)msg.obj;
+			Log.d("payActivity",result);
+			Toast.makeText(PayActivity.this, result, Toast.LENGTH_LONG).show();
+			payBtn.setEnabled(false);
+		}
+	};
+	private void sendMsg(){
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				Message msg=handler.obtainMessage();
+				String orderId = orderIdEt.getText().toString();
+				// 请求服务器url
+				String url = getUrlFromSp()+"servlet/PayMoneyServlet?id="+orderId;
+				// 获得查询结果
+				String result = HttpUtil.queryStringForPost(url);
+				msg.obj=result;
+				handler.sendMessage(msg);
+			}
+		}).start();
+	}
 	// 查询点餐信息监听器
 	OnClickListener queryListener = new OnClickListener() {
 		@Override
@@ -47,26 +75,22 @@ public class PayActivity extends Activity{
 			// 获得订单编号
 			String orderId = orderIdEt.getText().toString();
 			// 请求服务器url
-			String url = HttpUtil.BASE_URL+"servlet/PayServlet?id="+orderId;
+			String url = getUrlFromSp()+"servlet/PayServlet?id="+orderId;
 			// 将返回信息在WebView中显示
 			wv.loadUrl(url);
 		}
 	};
-
+	public String getUrlFromSp(){
+		SharedPreferences pref = getSharedPreferences("data",MODE_PRIVATE);
+		String  url=pref.getString("url", "");
+		return url;
+	}
 	// 结算监听器
 	OnClickListener payListener = new OnClickListener() {
 		@Override
 		public void onClick(View v) {
-			// 获得订单编号
-			String orderId = orderIdEt.getText().toString();
-			// 请求服务器url
-			String url = HttpUtil.BASE_URL+"servlet/PayMoneyServlet?id="+orderId;
-			// 获得查询结果
-			String result = HttpUtil.queryStringForPost(url);
-			// 显示结算结果
-			Toast.makeText(PayActivity.this, result, Toast.LENGTH_LONG).show();
-			// 使结算按钮失效
-			payBtn.setEnabled(false);
+			sendMsg();
+
 		}
 	};
 

@@ -198,7 +198,7 @@ public class UserRegisterActivity extends Activity  {
 		String pwd = pwdEditText.getText().toString();
 		// 获得登录结果
 		String result=query2(username,pwd);
-		Log.d("LoginActivity", result+"cook");
+		Log.d("LoginActivity", result + "cook");
 		if(result!=null&&result.equals("0")){
 			return false;
 		}else{
@@ -248,6 +248,11 @@ public class UserRegisterActivity extends Activity  {
 		editor.putString("name", name);
 		editor.commit();
 	}
+	public String getUrlFromSp(){
+		SharedPreferences pref = getSharedPreferences("data",MODE_PRIVATE);
+		String  url=pref.getString("url", "");
+		return url;
+	}
 	private String query2(String account,String password){
 		// 查询参数
 		String lfStr="";
@@ -270,7 +275,7 @@ public class UserRegisterActivity extends Activity  {
 		// url
 		String queryString = "account="+account+"&password="+password+"&gender="+gender+lfStr+dfStr+lmStr+dmStr;
 
-		String url = HttpUtil.BASE_URL+"servlet/UserRegisterServlet?"+queryString;
+		String url = getUrlFromSp()+"servlet/UserRegisterServlet?"+queryString;
 		Log.d("LoginActivity", "url="+url+"cook");
 		// 查询返回结果
 		return HttpUtil.queryStringForPost(url);

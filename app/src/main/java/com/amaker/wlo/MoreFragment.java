@@ -179,7 +179,11 @@ public class MoreFragment extends Fragment {
         Log.i("..", "MoreAdapter()新建对象：lioliolio" +adapter);
         list.setAdapter(adapter);
     }
-
+    public String getUrlFromSp(){
+        SharedPreferences pref = getActivity().getSharedPreferences("data", getActivity().MODE_PRIVATE);
+        String  url=pref.getString("url", "");
+        return url;
+    }
     private void sendRequestWithOkHttp(final int tabIndex){
 
         new Thread(new Runnable(){
@@ -189,7 +193,7 @@ public class MoreFragment extends Fragment {
                 try{
                     OkHttpClient client =new OkHttpClient();
                     Request request=new Request.Builder()
-                            .url(HttpUtil.BASE_URL+"servlet/GetMenusServlet?"+"tabIndex="+tabIndex+"&userId="+userId).build();
+                            .url(getUrlFromSp()+"servlet/GetMenusServlet?"+"tabIndex="+tabIndex+"&userId="+userId).build();
                     Response reponse=client.newCall(request).execute();
                     String reponseData=reponse.body().string();
                     Log.d("TestActivity","user"+reponseData);
@@ -213,8 +217,9 @@ public class MoreFragment extends Fragment {
     }
 
     private void setShop(shopBean bean,int id,String pic,String MenuName,String description,int Price,int ShopNumber,boolean Choosed){
+        String picUrl=getUrlFromSp()+"servlet/GetDishPicServlet?image="+pic;
         bean.setShopId(id);
-        bean.setPicUrl(pic);
+        bean.setPicUrl(picUrl);
         bean.setShopName(MenuName);
         bean.setShopDescription(description);
         bean.setShopPrice(Price);
@@ -287,7 +292,7 @@ public class MoreFragment extends Fragment {
                                 e.printStackTrace();
                             }
                             // 请求服务器Servlet的url
-                            String url = HttpUtil.BASE_URL
+                            String url = getUrlFromSp()
                                     + "servlet/OrderDetailServlet";
                             // 获得HttpPost对象
                             sendRequest(url,entity1);

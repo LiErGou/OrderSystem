@@ -44,7 +44,7 @@ public class HotMenuActivity extends FragmentActivity {
 		pinnedToggleButton = (ToggleButton) findViewById(R.id.toggleButton2);
 		ViewPager viewPager = (ViewPager) findViewById(R.id.moretab_viewPager);
 		scrollIndicatorView = (ScrollIndicatorView) findViewById(R.id.moretab_indicator);
-		scrollIndicatorView.setBackgroundColor(Color.RED);
+		scrollIndicatorView.setBackgroundColor(Color.CYAN);
 		scrollIndicatorView.setScrollBar(new DrawableBar(this, R.drawable.round_border_white_selector, Gravity.CENTENT_BACKGROUND) {
 			@Override
 			public int getHeight(int tabHeight) {
@@ -57,7 +57,7 @@ public class HotMenuActivity extends FragmentActivity {
 			}
 		});
 
-		unSelectTextColor = Color.WHITE;
+		unSelectTextColor = Color.BLACK;
 		// 设置滚动监听
 		scrollIndicatorView.setOnTransitionListener(new OnTransitionTextListener().setColor(Color.RED, unSelectTextColor));
 
