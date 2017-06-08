@@ -42,6 +42,12 @@ public class PayActivity extends Activity{
 		queryBtn.setOnClickListener(queryListener);
 		// 添加结算息监听器
 		payBtn.setOnClickListener(payListener);
+		SharedPreferences pref = getSharedPreferences("data",MODE_PRIVATE);
+		String  isGuest=pref.getString("isGuest", "");
+		if (isGuest.equals("yes")){
+			payBtn.setEnabled(false);
+		}
+
 	}
 	Handler handler=new Handler(){
 		@Override
